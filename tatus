@@ -1,0 +1,65 @@
+commit 023a88fa43cd7685971d34787abd9063ea452fe1
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 11:32:36 2011 +0200
+
+    Added setup&teardown functions in tests
+
+commit a955b4807ecefc5ab2b6493198e04a56a068b7b6
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 11:28:41 2011 +0200
+
+    Green Test - Calling Plugin Override Options
+
+commit a0e9b03fb4a6ff9fbd750328418be5a7e32ee97d
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 11:26:21 2011 +0200
+
+    Some modifications to check the tests in TDD environment
+
+commit 7a0f4c1edf3e1382c3ddfb8edf11555b9d72fe71
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 11:21:59 2011 +0200
+
+    Test created - Calling Plugin Override Options - Test Modified - ReWrite Test 'Override Default Option' to works in the correct way
+
+commit 4b77e0671e4d8a87d58c1d7dbe29ffbce9b7ed90
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 11:16:12 2011 +0200
+
+    Green Test - Override Default Options
+
+commit 823b7588f7174a5a81c9de5161dc9ea010a52373
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 11:14:15 2011 +0200
+
+    Test created - Override Default Options
+
+commit d8819d72e2814ed07df5d3429baf4b873641f0b8
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 11:09:12 2011 +0200
+
+    First green. Checking Default Values
+
+commit f47a78b74ba9fda87ed8aa1c723f86a9d604fc12
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 11:06:24 2011 +0200
+
+    Starting TDD - First test. Rename some files.
+
+commit 87927cc2cfc3161fb1a4a811f0e851f31c4fb0e1
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 10:58:33 2011 +0200
+
+    Borrados archivos README y package de QUnit
+
+commit eac383299ec0c9c945eddf671edc6f48b752cc81
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 10:57:25 2011 +0200
+
+    Set up the environment
+
+commit 48df39599a86fe7a0deff48d16956bf172ae70c8
+Author: raultm <raultm@raultm-Satellite-A210.(none)>
+Date:   Sun Sep 4 10:50:18 2011 +0200
+
+    Downloaded Jquery & QUnit

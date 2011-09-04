@@ -2,7 +2,8 @@ module("Competition Calendar");
 
 var targetId = "#qunit-target";
 
-setup: function() {       
+setup: function() {    
+    $(targetId).empty();   
     $.competitionCalendar.overrideOptions({});
 }
 teardown: function() {
