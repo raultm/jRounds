@@ -36,3 +36,15 @@ test("Scaffold Team Names' Insertion", function() {
    same($('.team-name-input-div').size(), 20, "We have 20 '.team-name-input-div'"); 
 
 });
+
+module("Competition Calendar Core");
+
+test("getCalendar Function receive teams params empty", function() {
+    teams = {};
+    same($.competitionCalendar.getCalendar(teams), null);
+});
+
+test("getCalendar Function receive teams params with 2 teams", function() {
+    teams = {};
+    same($.competitionCalendar.getCalendar(teams), null);
+});
