@@ -1,4 +1,4 @@
-module("Competition Calendar");
+module("Beginning");
 
 var targetId = "#qunit-target";
 var teams2 = {
@@ -47,7 +47,7 @@ test("Scaffold Team Names' Insertion", function() {
 
 });
 
-module("Competition Calendar Core");
+module("Core");
 
 test("rotateTeamsJSON Function receive teams param empty", function() {
     teams = {};
