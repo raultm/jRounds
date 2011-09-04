@@ -1,5 +1,11 @@
 module("Competition Calendar");
- 
+
+setup: function() {       
+    $.competitionCalendar.overrideOptions({});
+},
+teardown: function() {
+}
+
 test("Default Options", function() {
     same($.competitionCalendar.defaultOptions.teamsLength, 20);
 });
