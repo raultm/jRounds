@@ -43,12 +43,16 @@ module("UI", {
     teardown: function() {}
 });
 
-test("Scaffold Team Names' Insertion", function() {
+test("Scaffold Settings' Form", function() {
+   $.competitionCalendar.scaffoldSettingsInsertion($(targetId));
+   ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
+   same($('.setting-option').size(), 0, "We have 0 '.setting-option'");
+});
+
+test("Scaffold Team Names' Form", function() {
    $.competitionCalendar.scaffoldTeamNamesInsertion($(targetId));
    ok($(targetId).find('#team-names-insertion').length, 'Prepare to introduce Team Names');
    same($('.team-name-input-div').size(), 20, "We have 20 '.team-name-input-div'");
-    
-
 });
 
 test("After Scaffold Team Names' Insertion get Teams Name in JSONObject", function() {
