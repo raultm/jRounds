@@ -39,7 +39,41 @@ test("Scaffold Team Names' Insertion", function() {
 
 module("Competition Calendar Core");
 
-test("getCalendar Function receive teams params empty", function() {
+test("rotateTeamsJSON Function receive teams param empty", function() {
     teams = {};
-    same($.competitionCalendar.getCalendar(teams), null);
+    same($.competitionCalendar.rotateTeamsJSON(teams), {});
+});
+
+test("getFixtures Function receive teams param empty", function() {
+    teams = {};
+    same($.competitionCalendar.getFixtures(teams), null);
+});
+
+test("getFixtures Function receive teams param size of two", function() {
+    teams = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+    };
+
+    expectedFixtures = {
+	  'weeks' : { 
+		'1' : {
+			'matches' : {
+				'0' : {
+					  'local' : teams[0]
+					, 'visitor' : teams[1]
+				}
+			} 
+		} 
+		, '2' : {
+			'matches' : {
+				'0' : {
+					  'local' : teams[0]
+					, 'visitor' : teams[1]
+				}
+			} 
+		} 
+	}
+    }
+    same($.competitionCalendar.getFixtures(teams), expectedFixtures);
 });
