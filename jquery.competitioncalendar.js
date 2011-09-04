@@ -5,8 +5,9 @@
       teamsLength : 20
    };
                     
-   $.fn.competitionCalendar = function(options) {
-      return this.each(function() {            
-      });
-   };    
+   competitionCalendar.options = null;
+    
+   competitionCalendar.overrideOptions = function(options) {
+      competitionCalendar.options = $.extend({}, competitionCalendar.defaultOptions, options);
+   };  
 })(jQuery);
