@@ -16,6 +16,16 @@
       competitionCalendar.options = $.extend({}, competitionCalendar.defaultOptions, options);
    }; 
 
+   competitionCalendar.scaffoldSettingsInsertion = function(element) {
+       
+	var settingOption = '';
+	var html = 
+		  "<div id='settings-insertion'>"
+			+ settingOption
+	        + "</div>";
+		                                  
+	$(element).html(html);
+   }
    competitionCalendar.scaffoldTeamNamesInsertion = function(element) {
 	
 	var nameInputs = '';
