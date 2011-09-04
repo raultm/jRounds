@@ -79,7 +79,7 @@ test("getFixtures Function receive teams param empty", function() {
     same($.competitionCalendar.getFixtures(teams), null);
 });
 
-test("getFixtures Function receive teams param size of two", function() {
+test("getFixtures Function receive teams param(Size 2)", function() {
     teams = {
     	  '0' : 'team1'
  	, '1' : 'team2'
@@ -93,4 +93,36 @@ test("getFixtures Function receive teams param size of two", function() {
     same($.competitionCalendar.getFixtures(teams), expectedFixtures);
 });
 
+test("getFixtures Function receive teams param(Size 4)", function() {
+    teams = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+	, '2' : 'team3'
+	, '3' : 'team4'
+    }
 
+    expectedFixtures = {
+	  "weeks": {
+	    "1": {
+	      "matches": { "0": { "local": teams[2], "visitor": teams[3]}, "1": { "local": teams[1], "visitor": teams[0] } }
+	    },
+	    "2": {
+	      "matches": { "0": { "local": teams[3], "visitor": teams[1]}, "1": { "local": teams[0], "visitor": teams[2] } }
+	    },
+	    "3": {
+	      "matches": { "0": { "local": teams[0], "visitor": teams[3]}, "1": { "local": teams[2], "visitor": teams[1] } }
+	    },
+	    "4": {
+	      "matches": { "0": { "local": teams[3], "visitor": teams[2]}, "1": { "local": teams[1], "visitor": teams[0] } }
+	    },
+	    "5": {
+	      "matches": { "0": { "local": teams[1], "visitor": teams[3]}, "1": { "local": teams[0], "visitor": teams[2] } }
+	    },
+	    "6": {
+	      "matches": { "0": { "local": teams[3], "visitor": teams[0]}, "1": { "local": teams[2], "visitor": teams[1] } }
+	    }
+	  }
+	}
+    
+   same($.competitionCalendar.getFixtures(teams), expectedFixtures, "Fixtures Ok with 4 teams and 2 legs");
+});
