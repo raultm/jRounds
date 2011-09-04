@@ -1,5 +1,7 @@
 module("Competition Calendar");
 
+var targetId = "#qunit-target";
+
 setup: function() {       
     $.competitionCalendar.overrideOptions({});
 }
@@ -19,7 +21,7 @@ test("Override Default Options", function() {
 });
 
 test("Calling Plugin Override Options", function() {
-   $("#qunit-target").competitionCalendar({
+   $(targetId).competitionCalendar({
       testOption : "Almendralejo"
    });
     
@@ -28,8 +30,8 @@ test("Calling Plugin Override Options", function() {
 });
 
 test("Scaffold Team Names' Insertion", function() {
-   $.competitionCalendar.scaffoldTeamNamesInsertion($("#qunit-target"));
-   ok($("#qunit-target").find('#team-names-insertion').length, 'Prepare to introduce Team Names');
+   $.competitionCalendar.scaffoldTeamNamesInsertion($(targetId));
+   ok($(targetId).find('#team-names-insertion').length, 'Prepare to introduce Team Names');
    same($('.team-name-input-div').size(), 20, "We have 20 '.team-name-input-div'"); 
 
 });
