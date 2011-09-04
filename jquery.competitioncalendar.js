@@ -18,7 +18,14 @@
 
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
        
-	var settingOption = '';
+	var settingOption = '';var teamsLength = competitionCalendar.options.teamsLength;
+	
+	settingOption += 
+			"<div class='setting-option-div'>"
+			    + "<label for='setting-option-teams-length'>Number of Teams : <label>"			
+			    + "<input type='text' name='setting-option-teams-length' class='setting-option' value='" + teamsLength + "'/>"
+			+ "</div>";
+
 	var html = 
 		  "<div id='settings-insertion'>"
 			+ settingOption
@@ -37,7 +44,7 @@
 			"<div class='team-name-input-div'>"
 			    + "<label for='team-name-input-" + position + "'>Team Name " + frontendPosition + " : <label>"			
 			    + "<input type='text' name='team-name-input-" + position + "' class='team-name-input' value='Team " + frontendPosition + "'/>"
-			+ "</div>"	
+			+ "</div>";
 	}
 
 	var html = 

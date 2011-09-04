@@ -1,6 +1,7 @@
 module("Beginning");
 
 var targetId = "#qunit-target";
+var testTargetId = "#qunit-target-test";
 var teams2 = {
     	  '0' : 'team1'
  	, '1' : 'team2'
@@ -46,7 +47,7 @@ module("UI", {
 test("Scaffold Settings' Form", function() {
    $.competitionCalendar.scaffoldSettingsInsertion($(targetId));
    ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
-   same($('.setting-option').size(), 0, "We have 0 '.setting-option'");
+   same($('.setting-option-div').size(), 1, "We have 1 '.setting-option-div'");
 });
 
 test("Scaffold Team Names' Form", function() {
