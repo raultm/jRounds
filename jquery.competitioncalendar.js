@@ -38,6 +38,12 @@
 	$(element).html(html);
    };
 
+   competitionCalendar.getTeamNames = function(){
+	teamNamesInputs = $('.team-name-input');
+	teamNames = $.map(teamNamesInputs, function(input, index){ return $(input).val(); });
+        return teamNames;
+   }
+
    competitionCalendar.getFixtures = function(teams) {
 	if(!teams){ return null; }
 	
