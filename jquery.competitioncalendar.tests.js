@@ -1,6 +1,16 @@
 module("Competition Calendar");
 
 var targetId = "#qunit-target";
+var teams2 = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+    }
+var teams4 = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+	, '2' : 'team3'
+	, '3' : 'team4'
+    }
 
 setup: function() {    
     $(targetId).empty();     
@@ -45,10 +55,7 @@ test("rotateTeamsJSON Function receive teams param empty", function() {
 });
 
 test("rotateTeamsJSON Function receive teams param(size 2)", function() {
-    teams = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
-    };
+    teams = teams2;
 
     expectedTeams = {
     	  '0' : 'team1'
@@ -58,12 +65,7 @@ test("rotateTeamsJSON Function receive teams param(size 2)", function() {
     same($.competitionCalendar.rotateTeamsJSON(teams), expectedTeams, "With Elements we must have the same JSON");
 });
 test("rotateTeamsJSON Function receive teams param(size 4)", function() {
-    teams = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
-	, '2' : 'team3'
-	, '3' : 'team4'
-    };
+    teams = teams4;
 
     expectedTeams = {
     	  '0' : 'team3'
@@ -80,10 +82,7 @@ test("getFixtures Function receive teams param empty", function() {
 });
 
 test("getFixtures Function receive teams param(Size 2)", function() {
-    teams = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
-    }
+    teams = teams2;
 
     expectedFixtures = {
 	  'weeks' : { '1' : { 'matches' : { '0' : {  'local' : teams[0], 'visitor' : teams[1] }	} } 
@@ -94,12 +93,7 @@ test("getFixtures Function receive teams param(Size 2)", function() {
 });
 
 test("getFixtures Function receive teams param(Size 4)", function() {
-    teams = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
-	, '2' : 'team3'
-	, '3' : 'team4'
-    }
+    teams = teams4;
 
     expectedFixtures = {
 	  "weeks": {
