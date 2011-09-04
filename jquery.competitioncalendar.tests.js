@@ -13,7 +13,7 @@ test("Override Default Options", function() {
 });
 
 test("Calling Plugin Override Options", function() {
-   $("#targetId").competitionCalendar({
+   $("#qunit-target").competitionCalendar({
       testOption : "Almendralejo"
    });
     
