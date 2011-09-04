@@ -83,13 +83,15 @@ test("After Scaffold Team Names' Insertion get Teams Name in JSONObject", functi
 
 });
 
-test("Scaffold Show Fixtures", function() {
-   $.competitionCalendar.overrideOptions({ teamsLength : 4 });
+test("Scaffold Show Fixtures (2 teams)", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 2 });
    $.competitionCalendar.scaffoldTeamNamesInsertion($(targetId));
    teamNames = $.competitionCalendar.getTeamNames();
    
-   $.competitionCalendar.showFixtures( teamNames );
-   ok($(targetId).find('#show-fixtures').length, 'Exists div#show-fixtures');	
+   $.competitionCalendar.showFixtures( teamNames, targetId );
+   ok($(targetId).find('#show-fixtures').length, 'Exists div#show-fixtures');
+   same($('.week-content').size(), 2, "We have 2 '.week-content'");
+   same($('.match-content').size(), 2, "We have 2 '.match-content'");	
 });
 
 module("Core");
