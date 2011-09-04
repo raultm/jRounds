@@ -83,6 +83,15 @@ test("After Scaffold Team Names' Insertion get Teams Name in JSONObject", functi
 
 });
 
+test("Scaffold Show Fixtures", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 4 });
+   $.competitionCalendar.scaffoldTeamNamesInsertion($(targetId));
+   teamNames = $.competitionCalendar.getTeamNames();
+   
+   $.competitionCalendar.showFixtures( teamNames );
+   ok($(targetId).find('#show-fixtures').length, 'Exists div#show-fixtures');	
+});
+
 module("Core");
 
 test("rotateTeamsJSON Function receive teams param empty", function() {
