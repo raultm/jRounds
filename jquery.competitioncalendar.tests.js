@@ -48,6 +48,7 @@ test("Scaffold Settings' Form", function() {
    $.competitionCalendar.scaffoldSettingsInsertion($(targetId));
    ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
    same($('.setting-option-div').size(), 1, "We have 1 '.setting-option-div'");
+   ok($(targetId).find('.setting-option-div [name$="teamsLength"]').length, 'Exists Teams Length Setting');
 });
 
 test("After Scaffold Settings' Form get Settings in JSONObject", function() {
