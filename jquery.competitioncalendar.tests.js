@@ -17,6 +17,6 @@ test("Calling Plugin Override Options", function() {
       testOption : "Almendralejo"
    });
     
-   same($.competitionCalendar.options.teamsLength, 10); 
+   same($.competitionCalendar.options.teamsLength, 20); 
    same($.competitionCalendar.options.testOption, "Almendralejo");    
 });
