@@ -43,8 +43,3 @@ test("getCalendar Function receive teams params empty", function() {
     teams = {};
     same($.competitionCalendar.getCalendar(teams), null);
 });
-
-test("getCalendar Function receive teams params with 2 teams", function() {
-    teams = {};
-    same($.competitionCalendar.getCalendar(teams), null);
-});
