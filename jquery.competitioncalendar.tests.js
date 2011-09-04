@@ -50,6 +50,20 @@ test("Scaffold Settings' Form", function() {
    same($('.setting-option-div').size(), 1, "We have 1 '.setting-option-div'");
 });
 
+test("After Scaffold Settings' Form get Settings in JSONObject", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 4 });
+   $.competitionCalendar.scaffoldSettingsInsertion($(targetId));
+	
+   settings = $.competitionCalendar.getSettings();
+   
+   expectedSettings = {
+	'teamsLength' : 4
+   };
+
+   same(settings, expectedSettings, "Checked Setting Options");
+
+});
+
 test("Scaffold Team Names' Form", function() {
    $.competitionCalendar.scaffoldTeamNamesInsertion($(targetId));
    ok($(targetId).find('#team-names-insertion').length, 'Prepare to introduce Team Names');
