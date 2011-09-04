@@ -35,7 +35,7 @@
 			+ nameInputs
 	        + "</div>";
 		                                  
-	tabs = $(html).appendTo(element).find('#competition-calendar-team-names-insertion');
+	$(element).html(html);
    };
 
    competitionCalendar.getFixtures = function(teams) {
@@ -69,7 +69,6 @@
    };
 
    competitionCalendar.rotateTeamsJSON = function(teamsToRotate){
-	console.log(teamsToRotate);
 	teamsRotates = teamsToRotate;
 	sizeOfTeamsToRotate = 0;for(team in teamsToRotate){sizeOfTeamsToRotate++;}
 	elementToRotate_1 = teamsRotates[sizeOfTeamsToRotate-2];
@@ -79,7 +78,6 @@
 		teamsRotates[index] = elementToRotate_1;
 		elementToRotate_1 = elementToRotate_2;
 	}
-	console.log(teamsToRotate);
 	return teamsRotates;
    }
 })(jQuery);

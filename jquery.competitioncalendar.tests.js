@@ -12,12 +12,7 @@ var teams4 = {
 	, '3' : 'team4'
     }
 
-setup: function() {    
-    $(targetId).empty();     
-    $.competitionCalendar.overrideOptions({});
-}
-teardown: function() {
-}
+
 
 test("Default Options", function() {
     same($.competitionCalendar.defaultOptions.teamsLength, 20);
@@ -40,10 +35,31 @@ test("Calling Plugin Override Options", function() {
    same($.competitionCalendar.options.testOption, "Almendralejo");    
 });
 
+module("UI", {
+    setup: function() {    
+        $(targetId).empty();     
+        $.competitionCalendar.overrideOptions({});
+    },
+    teardown: function() {}
+});
+
 test("Scaffold Team Names' Insertion", function() {
    $.competitionCalendar.scaffoldTeamNamesInsertion($(targetId));
    ok($(targetId).find('#team-names-insertion').length, 'Prepare to introduce Team Names');
-   same($('.team-name-input-div').size(), 20, "We have 20 '.team-name-input-div'"); 
+   same($('.team-name-input-div').size(), 20, "We have 20 '.team-name-input-div'");
+    
+
+});
+
+test("After Scaffold Team Names' Insertion get Teams Name in JSONObject", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 4 });
+   $.competitionCalendar.scaffoldTeamNamesInsertion($(targetId));
+	
+   teamNames = $.competitionCalendar.getTeamNames();
+   
+   expectedTeamNames = ["Team 1", "Team 2", "Team 3", "Team 4"];
+
+   same(teamNames, expectedTeamNames, "We've received 4 Team Names");
 
 });
 
