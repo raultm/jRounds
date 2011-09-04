@@ -94,6 +94,17 @@ test("Scaffold Show Fixtures (2 teams)", function() {
    same($('.match-content').size(), 2, "We have 2 '.match-content'");	
 });
 
+test("Scaffold Show Fixtures (4 teams)", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 4 });
+   $.competitionCalendar.scaffoldTeamNamesInsertion($(targetId));
+   teamNames = $.competitionCalendar.getTeamNames();
+   
+   $.competitionCalendar.showFixtures( teamNames, targetId );
+   ok($(targetId).find('#show-fixtures').length, 'Exists div#show-fixtures');
+   same($('.week-content').size(), 6, "We have 6 '.week-content'");
+   same($('.match-content').size(), 12, "We have 12 '.match-content'");	
+});
+
 module("Core");
 
 test("rotateTeamsJSON Function receive teams param empty", function() {
