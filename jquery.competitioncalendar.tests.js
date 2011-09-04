@@ -3,7 +3,7 @@ module("Competition Calendar");
 var targetId = "#qunit-target";
 
 setup: function() {    
-    $(targetId).empty();   
+    $(targetId).empty();     
     $.competitionCalendar.overrideOptions({});
 }
 teardown: function() {
@@ -15,7 +15,7 @@ test("Default Options", function() {
 
 test("Override Default Options", function() {
     $.competitionCalendar.overrideOptions({
-        teamsLength : 10,
+        teamsLength : 10
     });
     
     same($.competitionCalendar.options.teamsLength, 10);   
