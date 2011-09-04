@@ -77,6 +77,27 @@
         return teamNames;
    }
 
+   competitionCalendar.showFixtures = function( teams, element ){
+	var fixtures = competitionCalendar.getFixtures(teams);
+	var html = '';
+	$.each(fixtures.weeks,function( weekIndex, week ) { 
+		html += "<div class='week-content'>";
+		html += "<div class='week-title'>Week " + weekIndex + "</div>";  
+		$.each(week.matches,function( matchIndex, match ) { 
+			html += "<div class='match-content'>"
+					+ "<div class='team-name team-local'>" + match.local + "</div>"
+					+ "<div class='team-name team-local'>" + match.visitor + "</div>"
+				+"</div>"; 
+
+		});
+		html += "</div>"
+	});
+	fixturesHtml = "<div id='show-fixtures'>" + html + "</div>";
+	
+	$(element).html(fixturesHtml);	
+
+   }
+
    competitionCalendar.getFixtures = function(teams) {
 	if(!teams){ return null; }
 	
