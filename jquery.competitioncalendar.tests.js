@@ -9,5 +9,14 @@ test("Override Default Options", function() {
         teamsLength : 10,
     });
     
-    same($.competitionCalendar.defaultOptions.teamsLength, 20);   
+    same($.competitionCalendar.options.teamsLength, 10);   
+});
+
+test("Calling Plugin Override Options", function() {
+   $("#targetId").competitionCalendar({
+      testOption : "Almendralejo"
+   });
+    
+   same($.competitionCalendar.options.teamsLength, 10); 
+   same($.competitionCalendar.options.testOption, "Almendralejo");    
 });
