@@ -57,7 +57,7 @@ test("After Scaffold Settings' Form get Settings in JSONObject", function() {
    settings = $.competitionCalendar.getSettings();
    
    expectedSettings = {
-	'teamsLength' : 4
+	"teamsLength" : "4"
    };
 
    same(settings, expectedSettings, "Checked Setting Options");

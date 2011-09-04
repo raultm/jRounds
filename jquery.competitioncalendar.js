@@ -23,7 +23,7 @@
 	settingOption += 
 			"<div class='setting-option-div'>"
 			    + "<label for='setting-option-teams-length'>Number of Teams : <label>"			
-			    + "<input type='text' name='setting-option-teams-length' class='setting-option' value='" + teamsLength + "'/>"
+			    + "<input type='text' name='teamsLength' class='setting-option' value='" + teamsLength + "'/>"
 			+ "</div>";
 
 	var html = 
@@ -33,6 +33,22 @@
 		                                  
 	$(element).html(html);
    }
+
+   competitionCalendar.getSettings = function(){
+	var settingInputs = $('.setting-option');
+	var settings = {}
+	var settingJSON = {}
+
+	$.each(settingInputs,function( index, settingInput ) { 
+		settingName = $(settingInput).attr('name');
+		settingValue = $(settingInput).val();
+		settingJSON[settingName] = settingValue;
+
+		$.extend(settings, settingJSON);
+	});
+	return settings;
+   }
+
    competitionCalendar.scaffoldTeamNamesInsertion = function(element) {
 	
 	var nameInputs = '';
