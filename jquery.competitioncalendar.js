@@ -38,4 +38,8 @@
 		                                  
 	tabs = $(html).appendTo(element).find('#competition-calendar-team-names-insertion');
    };
+
+   competitionCalendar.getCalendar = function(teams) {
+      return null;
+   };
 })(jQuery);
