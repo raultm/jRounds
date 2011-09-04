@@ -44,6 +44,36 @@ test("rotateTeamsJSON Function receive teams param empty", function() {
     same($.competitionCalendar.rotateTeamsJSON(teams), {});
 });
 
+test("rotateTeamsJSON Function receive teams param(size 2)", function() {
+    teams = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+    };
+
+    expectedTeams = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+    };
+
+    same($.competitionCalendar.rotateTeamsJSON(teams), expectedTeams, "With Elements we must have the same JSON");
+});
+test("rotateTeamsJSON Function receive teams param(size 4)", function() {
+    teams = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+	, '2' : 'team3'
+	, '3' : 'team4'
+    };
+
+    expectedTeams = {
+    	  '0' : 'team3'
+ 	, '1' : 'team1'
+	, '2' : 'team2'
+	, '3' : 'team4'
+    };
+    same($.competitionCalendar.rotateTeamsJSON(teams), expectedTeams, "With Four elements we must see hot the first three elements have changed");
+});
+
 test("getFixtures Function receive teams param empty", function() {
     teams = {};
     same($.competitionCalendar.getFixtures(teams), null);
@@ -53,27 +83,14 @@ test("getFixtures Function receive teams param size of two", function() {
     teams = {
     	  '0' : 'team1'
  	, '1' : 'team2'
-    };
+    }
 
     expectedFixtures = {
-	  'weeks' : { 
-		'1' : {
-			'matches' : {
-				'0' : {
-					  'local' : teams[0]
-					, 'visitor' : teams[1]
-				}
-			} 
-		} 
-		, '2' : {
-			'matches' : {
-				'0' : {
-					  'local' : teams[0]
-					, 'visitor' : teams[1]
-				}
-			} 
-		} 
+	  'weeks' : { '1' : { 'matches' : { '0' : {  'local' : teams[0], 'visitor' : teams[1] }	} } 
+		    , '2' : { 'matches' : { '0' : {  'local' : teams[1], 'visitor' : teams[0] } } } 
 	}
     }
     same($.competitionCalendar.getFixtures(teams), expectedFixtures);
 });
+
+
