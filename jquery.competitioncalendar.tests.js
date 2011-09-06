@@ -185,3 +185,34 @@ test("getFixtures Function receive teams param(Size 4)", function() {
     
    same($.competitionCalendar.getFixtures(teams), expectedFixtures, "Fixtures Ok with 4 teams and 2 legs");
 });
+
+test("parseFixtureJson2FixtureOutput (Teams Size 2)", function() {
+    teams = teams2;
+
+    fixtures = {
+	  'weeks' : { '1' : { 'matches' : { '0' : {  'local' : teams[0], 'visitor' : teams[1] }	} } 
+		    , '2' : { 'matches' : { '0' : {  'local' : teams[1], 'visitor' : teams[0] } } } 
+	}
+    }
+   
+    expectedString = "<div class='competition-fixture'>"
+	    + "<span class='competition-name'>Competition</span>"
+	    + "<div class='week-fixtures'>"
+		+ "<span class='week-name'>Week 1</span>"
+		+ "<div class='match-fixtures'>"
+	            + "<span class='local-team'>" + teams[0] + "</span>"
+		    + "<span class='visitor-team'>" + teams[1] + "</span>"
+		+ "</div>"
+	    + "</div>"
+	    + "<div class='week-fixtures'>"
+		+ "<span class='week-name'>Week 2</span>"
+		+ "<div class='match-fixtures'>"
+	            + "<span class='local-team'>" + teams[1] + "</span>"
+		    + "<span class='visitor-team'>" + teams[0] + "</span>"
+		+ "</div>"
+	    + "</div>"
+	+ "</div>"
+    ;
+
+   same($.competitionCalendar.parseFixtureJson2FixtureOutput(fixtures), expectedString, "Json converted to String Ok!");
+});
