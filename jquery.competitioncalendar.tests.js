@@ -44,6 +44,13 @@ module("UI", {
     teardown: function() {}
 });
 
+test("Scaffold Output View", function() {
+   $.competitionCalendar.scaffoldOutputView($(targetId));
+   ok($(targetId).find('#output-fixtures').length, 'Prepare to view Output');
+   same($('#plain-text').size(), 1, "We have '#plain-text'");
+   same($('#verbose').size(), 1, "We have '#verbose'");
+});
+
 test("Scaffold Settings' Form", function() {
    $.competitionCalendar.scaffoldSettingsInsertion($(targetId));
    ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
