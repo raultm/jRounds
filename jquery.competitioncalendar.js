@@ -153,4 +153,27 @@
 	}
 	return teamsRotates;
    }
+   
+   competitionCalendar.parseFixtureJson2FixtureOutput = function(fixtureJson){
+
+	expectedString = "<div class='competition-fixture'>"
+	    + "<span class='competition-name'>Competition</span>"
+	    + "<div class='week-fixtures'>"
+		+ "<span class='week-name'>Week 1</span>"
+		+ "<div class='match-fixtures'>"
+	            + "<span class='local-team'>" + teams[0] + "</span>"
+		    + "<span class='visitor-team'>" + teams[1] + "</span>"
+		+ "</div>"
+	    + "</div>"
+	    + "<div class='week-fixtures'>"
+		+ "<span class='week-name'>Week 2</span>"
+		+ "<div class='match-fixtures'>"
+	            + "<span class='local-team'>" + teams[1] + "</span>"
+		    + "<span class='visitor-team'>" + teams[0] + "</span>"
+		+ "</div>"
+	    + "</div>"
+	+ "</div>"
+        ;
+	return expectedString;
+   }
 })(jQuery);
