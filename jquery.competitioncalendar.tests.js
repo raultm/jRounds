@@ -243,7 +243,7 @@ test("parseFixtureJson2FixtureOutput (Teams Size 4)", function() {
 	  }
 	}
    
-    expectedString = "<div class='competition-fixture'>"
+    var expectedString = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 1</span>"
