@@ -155,25 +155,32 @@
    }
    
    competitionCalendar.parseFixtureJson2FixtureOutput = function(fixtureJson){
+	
+	fixtureOutput	= "";
+	weeksOutput 	= "";
+	matchesOutput 	= "";
 
-	expectedString = "<div class='competition-fixture'>"
+	$.each(fixtureJson.weeks,function( weekIndex, week ) { 
+	    matchesOutput = "";
+	    $.each(week.matches,function( matchIndex, match ) { 
+		matchesOutput+= 
+		  "<div class='match-fixtures'>"
+	            + "<span class='local-team'>" + match.local + "</span>"
+		    + "<span class='visitor-team'>" + match.visitor + "</span>"
+		+ "</div>"		    
+	    });
+	    weeksOutput += 
+	      "<div class='week-fixtures'>"
+		+ "<span class='week-name'>Week " + weekIndex + "</span>"
+		+ matchesOutput
+	    + "</div>"
+	});
+	
+	fixtureOutput = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
-	    + "<div class='week-fixtures'>"
-		+ "<span class='week-name'>Week 1</span>"
-		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[0] + "</span>"
-		    + "<span class='visitor-team'>" + teams[1] + "</span>"
-		+ "</div>"
-	    + "</div>"
-	    + "<div class='week-fixtures'>"
-		+ "<span class='week-name'>Week 2</span>"
-		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[1] + "</span>"
-		    + "<span class='visitor-team'>" + teams[0] + "</span>"
-		+ "</div>"
-	    + "</div>"
+	    + weeksOutput
 	+ "</div>"
         ;
-	return expectedString;
+	return fixtureOutput;
    }
 })(jQuery);
