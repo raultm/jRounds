@@ -16,6 +16,19 @@
       competitionCalendar.options = $.extend({}, competitionCalendar.defaultOptions, options);
    }; 
 
+   competitionCalendar.scaffoldOutputView = function(element) {
+       
+	
+	
+	var html = 
+		  "<div id='output-fixtures'>"
+			+ "<div id='plain-text'></div>"
+			+ "<textarea id='verbose'></div>"
+	        + "</div>";
+		                                  
+	$(element).html(html);
+   }
+
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
        
 	var settingOption = '';var teamsLength = competitionCalendar.options.teamsLength;
