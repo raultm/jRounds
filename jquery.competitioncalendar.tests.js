@@ -31,7 +31,9 @@ test("Calling Plugin Override Options", function() {
 
 module("UI", {
     setup: function() {    
-        $(targetId).empty();     
+ 	console.log($(targetId).html());
+        $(targetId).empty();  
+	console.log($(targetId).html()); 
         $.competitionCalendar.overrideOptions({});
     },
     teardown: function() {}
@@ -103,6 +105,23 @@ test("Scaffold Show Fixtures (4 teams)", function() {
    ok($(targetId).find('#show-fixtures').length, 'Exists div#show-fixtures');
    same($('.week-content').size(), 6, "We have 6 '.week-content'");
    same($('.match-content').size(), 12, "We have 12 '.match-content'");	
+});
+
+test("Scaffold Complete Module", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 4 });
+   $.competitionCalendar.scaffoldModule($(targetId));
+   
+   
+   ok($(targetId).find('#competition-calendar').length, 'Main Div Created');
+   ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
+   same($('.setting-option-div').size(), 1, "We have 1 '.setting-option-div'");
+   ok($(targetId).find('.setting-option-div [name$="teamsLength"]').length, 'Exists Teams Length Setting');
+   same($('.team-name-input-div').size(), 4, "We have 4 '.team-name-input-div'");
+   same($('.week-content').size(), 6, "We have 6 '.week-content'");
+   same($('.match-content').size(), 12, "We have 12 '.match-content'");
+   same($(targetId).find('#output-fixtures').length, 'Prepare to view Output');
+   same($('#plain-text').size(), 1, "We have '#plain-text'");
+   same($('#verbose').size(), 1, "We have '#verbose'");
 });
 
 module("Core",{
