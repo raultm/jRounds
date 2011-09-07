@@ -31,10 +31,8 @@ test("Calling Plugin Override Options", function() {
 
 module("UI", {
     setup: function() {    
- 	console.log($(targetId).html());
-        $(targetId).empty();  
-	console.log($(targetId).html()); 
-        $.competitionCalendar.overrideOptions({});
+ 	$(targetId).empty();  
+	$.competitionCalendar.overrideOptions({});
     },
     teardown: function() {}
 });
@@ -122,6 +120,20 @@ test("Scaffold Complete Module", function() {
    ok($(targetId).find('#output-fixtures').length, 'Prepare to view Output');
    same($('#plain-text').size(), 1, "We have '#plain-text'");
    same($('#verbose').size(), 1, "We have '#verbose'");
+});
+
+test("showContent", function() {
+	menu = $.competitionCalendar.menu;
+	contentSelected = menu.settings;
+	ok(menu.length, "El menú tiene al menos un elemento");
+	$.competitionCalendar.showContent(contentSelected);
+	$.each(menu,function( contentIndex, contentIdentifier ) {
+	    if(contentIdentifier == contentSelected)
+		same($(contentIdentifier).is(':hidden'), false, "El contenido no está oculto");
+	    else
+		ok($(contentIdentifier).is(':hidden'), contentIdentifier + " está oculto");
+	});
+	
 });
 
 module("Core",{
