@@ -11,13 +11,26 @@
    };
 
    competitionCalendar.options = null;
-   competitionCalendar.menu = {}
+   competitionCalendar.menu = {
+	  'settings' : 'setting-option-div'
+	, 'names'    : 'team-names-insertion'
+	, 'output'   : 'output-fixtures'
+   }
    
    competitionCalendar.overrideOptions = function(options) {
       competitionCalendar.options = $.extend({}, competitionCalendar.defaultOptions, options);
    }; 
 
-
+   competitionCalendar.showContent = function(element){
+	menu = competitionCalendar.menu;
+	elementSelected = element;
+	$.each(menu,function( contentIndex, contentIdentifier ) {
+	    if(contentIdentifier == element)
+		$('#' + contentIdentifier).show();
+	    else
+		$('#' + contentIdentifier).hide();
+	});
+   }
    
    competitionCalendar.scaffoldModule = function(element){
 	var html = "<div id='competition-calendar'></div>"; 

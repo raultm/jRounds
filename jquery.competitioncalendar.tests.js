@@ -123,15 +123,18 @@ test("Scaffold Complete Module", function() {
 });
 
 test("showContent", function() {
+	$.competitionCalendar.scaffoldModule($(testTargetId));
 	menu = $.competitionCalendar.menu;
-	contentSelected = menu.settings;
-	ok(menu.length, "El menú tiene al menos un elemento");
+	countMenuElements = 0; for(element in menu){countMenuElements++;}
+	ok(countMenuElements, "El menú tiene al menos un elemento");
+	
+	contentSelected = menu.settings;console.log(contentSelected);
 	$.competitionCalendar.showContent(contentSelected);
 	$.each(menu,function( contentIndex, contentIdentifier ) {
 	    if(contentIdentifier == contentSelected)
-		same($(contentIdentifier).is(':hidden'), false, "El contenido no está oculto");
+		ok(!$('#' + contentIdentifier).is(':hidden'), "El contenido no está oculto");
 	    else
-		ok($(contentIdentifier).is(':hidden'), contentIdentifier + " está oculto");
+		ok(!$('#' + contentIdentifier).is(':visible'), contentIdentifier + " está oculto");
 	});
 	
 });
