@@ -11,10 +11,25 @@
    };
 
    competitionCalendar.options = null;
-    
+   
    competitionCalendar.overrideOptions = function(options) {
       competitionCalendar.options = $.extend({}, competitionCalendar.defaultOptions, options);
    }; 
+
+   
+   competitionCalendar.scaffoldModule = function(element){
+	var html = "<div id='competition-calendar'></div>"; 
+	var competitionId = '#competition-calendar';
+	var plainTextId = '#plain-text';
+	var verboseId = '#verbose';
+	$(element).append(html);
+  	competitionCalendar.scaffoldSettingsInsertion($(competitionId));
+	competitionCalendar.scaffoldTeamNamesInsertion($(competitionId));
+	competitionCalendar.scaffoldOutputView($(competitionId));
+	teams = competitionCalendar.getTeamNames();
+	competitionCalendar.showFixtures(teams, $(plainTextId));
+	competitionCalendar.showFixtures(teams, $(verboseId));
+   }
 
    competitionCalendar.scaffoldOutputView = function(element) {
 	var html = 
@@ -23,7 +38,7 @@
 			+ "<textarea id='verbose'></div>"
 	        + "</div>";
 		                                  
-	$(element).html(html);
+	$(element).append(html);
    }
 
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
@@ -37,7 +52,7 @@
 		  "<div id='settings-insertion'>"
 			+ settingOption
 	        + "</div>";
-	$(element).html(html);
+	$(element).append(html);
    }
 
    competitionCalendar.getSettings = function(){
@@ -69,7 +84,7 @@
 		  "<div id='team-names-insertion'>"
 			+ nameInputs
 	        + "</div>";
-	$(element).html(html);
+	$(element).append(html);
    };
 
    competitionCalendar.getTeamNames = function(){

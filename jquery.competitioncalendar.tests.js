@@ -119,7 +119,7 @@ test("Scaffold Complete Module", function() {
    same($('.team-name-input-div').size(), 4, "We have 4 '.team-name-input-div'");
    same($('.week-content').size(), 6, "We have 6 '.week-content'");
    same($('.match-content').size(), 12, "We have 12 '.match-content'");
-   same($(targetId).find('#output-fixtures').length, 'Prepare to view Output');
+   ok($(targetId).find('#output-fixtures').length, 'Prepare to view Output');
    same($('#plain-text').size(), 1, "We have '#plain-text'");
    same($('#verbose').size(), 1, "We have '#verbose'");
 });
