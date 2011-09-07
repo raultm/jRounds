@@ -2,17 +2,10 @@ module("Beginning");
 
 var targetId = "#qunit-target";
 var testTargetId = "#qunit-target-test";
-var teams2 = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
-    }
-var teams4 = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
-	, '2' : 'team3'
-	, '3' : 'team4'
-    }
-
+var teams2 = {}
+var fixtures2 = {}
+var teams4 = {}
+var fixtures4 = {}
 
 
 test("Default Options", function() {
@@ -112,7 +105,51 @@ test("Scaffold Show Fixtures (4 teams)", function() {
    same($('.match-content').size(), 12, "We have 12 '.match-content'");	
 });
 
-module("Core");
+module("Core",{
+	setup : function(){
+	
+	   teams2 = {
+	    	  '0' : 'team1'
+	 	, '1' : 'team2'
+	   }
+	   fixtures2 = {
+		  'weeks' : { 
+	    		  '1' : { 'matches' : { '0' : {  'local' : teams2[0], 'visitor' : teams2[1] } } } 
+			, '2' : { 'matches' : { '0' : {  'local' : teams2[1], 'visitor' : teams2[0] } } } 
+		}
+	    }
+
+	   teams4 = {
+	    	  '0' : 'team1'
+	 	, '1' : 'team2'
+		, '2' : 'team3'
+		, '3' : 'team4'
+	   }
+	   fixtures4 = {
+		  "weeks": {
+		    "1": {
+		      "matches": { "0": { "local": teams4[2], "visitor": teams4[3]}, "1": { "local": teams4[1], "visitor": teams4[0] } }
+		    },
+		    "2": {
+		      "matches": { "0": { "local": teams4[3], "visitor": teams4[1]}, "1": { "local": teams4[0], "visitor": teams4[2] } }
+		    },
+		    "3": {
+		      "matches": { "0": { "local": teams4[0], "visitor": teams4[3]}, "1": { "local": teams4[2], "visitor": teams4[1] } }
+		    },
+		    "4": {
+		      "matches": { "0": { "local": teams4[3], "visitor": teams4[2]}, "1": { "local": teams4[1], "visitor": teams4[0] } }
+		    },
+		    "5": {
+		      "matches": { "0": { "local": teams4[1], "visitor": teams4[3]}, "1": { "local": teams4[0], "visitor": teams4[2] } }
+		    },
+		    "6": {
+		      "matches": { "0": { "local": teams4[3], "visitor": teams4[0]}, "1": { "local": teams4[2], "visitor": teams4[1] } }
+		    }
+		  }
+	    }
+	}
+
+});
 
 test("rotateTeamsJSON Function receive teams param empty", function() {
     teams = {};
@@ -120,25 +157,20 @@ test("rotateTeamsJSON Function receive teams param empty", function() {
 });
 
 test("rotateTeamsJSON Function receive teams param(size 2)", function() {
-    teams = teams2;
-
     expectedTeams = {
     	  '0' : 'team1'
  	, '1' : 'team2'
     };
-
-    same($.competitionCalendar.rotateTeamsJSON(teams), expectedTeams, "With Elements we must have the same JSON");
+    same($.competitionCalendar.rotateTeamsJSON(teams2), expectedTeams, "With Elements we must have the same JSON");
 });
 test("rotateTeamsJSON Function receive teams param(size 4)", function() {
-    teams = teams4;
-
     expectedTeams = {
     	  '0' : 'team3'
  	, '1' : 'team1'
 	, '2' : 'team2'
 	, '3' : 'team4'
     };
-    same($.competitionCalendar.rotateTeamsJSON(teams), expectedTeams, "With Four elements we must see hot the first three elements have changed");
+    same($.competitionCalendar.rotateTeamsJSON(teams4), expectedTeams, "With Four elements we must see hot the first three elements have changed");
 });
 
 test("getFixtures Function receive teams param empty", function() {
@@ -147,168 +179,102 @@ test("getFixtures Function receive teams param empty", function() {
 });
 
 test("getFixtures Function receive teams param(Size 2)", function() {
-    teams = teams2;
-
-    expectedFixtures = {
-	  'weeks' : { '1' : { 'matches' : { '0' : {  'local' : teams[0], 'visitor' : teams[1] }	} } 
-		    , '2' : { 'matches' : { '0' : {  'local' : teams[1], 'visitor' : teams[0] } } } 
-	}
-    }
-    same($.competitionCalendar.getFixtures(teams), expectedFixtures);
+    same($.competitionCalendar.getFixtures(teams2), fixtures2);
 });
 
 test("getFixtures Function receive teams param(Size 4)", function() {
-    teams = teams4;
-
-    expectedFixtures = {
-	  "weeks": {
-	    "1": {
-	      "matches": { "0": { "local": teams[2], "visitor": teams[3]}, "1": { "local": teams[1], "visitor": teams[0] } }
-	    },
-	    "2": {
-	      "matches": { "0": { "local": teams[3], "visitor": teams[1]}, "1": { "local": teams[0], "visitor": teams[2] } }
-	    },
-	    "3": {
-	      "matches": { "0": { "local": teams[0], "visitor": teams[3]}, "1": { "local": teams[2], "visitor": teams[1] } }
-	    },
-	    "4": {
-	      "matches": { "0": { "local": teams[3], "visitor": teams[2]}, "1": { "local": teams[1], "visitor": teams[0] } }
-	    },
-	    "5": {
-	      "matches": { "0": { "local": teams[1], "visitor": teams[3]}, "1": { "local": teams[0], "visitor": teams[2] } }
-	    },
-	    "6": {
-	      "matches": { "0": { "local": teams[3], "visitor": teams[0]}, "1": { "local": teams[2], "visitor": teams[1] } }
-	    }
-	  }
-	}
-    
-   same($.competitionCalendar.getFixtures(teams), expectedFixtures, "Fixtures Ok with 4 teams and 2 legs");
+   same($.competitionCalendar.getFixtures(teams4), fixtures4, "Fixtures Ok with 4 teams and 2 legs");
 });
 
 test("parseFixtureJson2FixtureOutput (Teams Size 2)", function() {
-    teams = teams2;
-
-    fixtures2 = {
-	  'weeks' : { '1' : { 'matches' : { '0' : {  'local' : teams[0], 'visitor' : teams[1] }	} } 
-		    , '2' : { 'matches' : { '0' : {  'local' : teams[1], 'visitor' : teams[0] } } } 
-	}
-    }
-   
     expectedString = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 1</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[0] + "</span>"
-		    + "<span class='visitor-team'>" + teams[1] + "</span>"
+	            + "<span class='local-team'>" + teams2[0] + "</span>"
+		    + "<span class='visitor-team'>" + teams2[1] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 2</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[1] + "</span>"
-		    + "<span class='visitor-team'>" + teams[0] + "</span>"
+	            + "<span class='local-team'>" + teams2[1] + "</span>"
+		    + "<span class='visitor-team'>" + teams2[0] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	+ "</div>"
     ;
-
-   same($.competitionCalendar.parseFixtureJson2FixtureOutput(fixtures2), expectedString, "Json converted to String Ok!");
+    same($.competitionCalendar.parseFixtureJson2FixtureOutput(fixtures2), expectedString, "Json converted to String Ok!");
 });
 
 test("parseFixtureJson2FixtureOutput (Teams Size 4)", function() {
-    teams = teams4;
-
-    fixtures4 = {
-	  "weeks": {
-	    "1": {
-	      "matches": { "0": { "local": teams[2], "visitor": teams[3]}, "1": { "local": teams[1], "visitor": teams[0] } }
-	    },
-	    "2": {
-	      "matches": { "0": { "local": teams[3], "visitor": teams[1]}, "1": { "local": teams[0], "visitor": teams[2] } }
-	    },
-	    "3": {
-	      "matches": { "0": { "local": teams[0], "visitor": teams[3]}, "1": { "local": teams[2], "visitor": teams[1] } }
-	    },
-	    "4": {
-	      "matches": { "0": { "local": teams[3], "visitor": teams[2]}, "1": { "local": teams[1], "visitor": teams[0] } }
-	    },
-	    "5": {
-	      "matches": { "0": { "local": teams[1], "visitor": teams[3]}, "1": { "local": teams[0], "visitor": teams[2] } }
-	    },
-	    "6": {
-	      "matches": { "0": { "local": teams[3], "visitor": teams[0]}, "1": { "local": teams[2], "visitor": teams[1] } }
-	    }
-	  }
-	}
-   
     var expectedString = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 1</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[2] + "</span>"
-		    + "<span class='visitor-team'>" + teams[3] + "</span>"
+	            + "<span class='local-team'>" + teams4[2] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[3] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[1] + "</span>"
-		    + "<span class='visitor-team'>" + teams[0] + "</span>"
+	            + "<span class='local-team'>" + teams4[1] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[0] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 2</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[3] + "</span>"
-		    + "<span class='visitor-team'>" + teams[1] + "</span>"
+	            + "<span class='local-team'>" + teams4[3] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[1] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[0] + "</span>"
-		    + "<span class='visitor-team'>" + teams[2] + "</span>"
+	            + "<span class='local-team'>" + teams4[0] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[2] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 3</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[0] + "</span>"
-		    + "<span class='visitor-team'>" + teams[3] + "</span>"
+	            + "<span class='local-team'>" + teams4[0] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[3] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[2] + "</span>"
-		    + "<span class='visitor-team'>" + teams[1] + "</span>"
+	            + "<span class='local-team'>" + teams4[2] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[1] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 4</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[3] + "</span>"
-		    + "<span class='visitor-team'>" + teams[2] + "</span>"
+	            + "<span class='local-team'>" + teams4[3] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[2] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[1] + "</span>"
-		    + "<span class='visitor-team'>" + teams[0] + "</span>"
+	            + "<span class='local-team'>" + teams4[1] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[0] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 5</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[1] + "</span>"
-		    + "<span class='visitor-team'>" + teams[3] + "</span>"
+	            + "<span class='local-team'>" + teams4[1] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[3] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[0] + "</span>"
-		    + "<span class='visitor-team'>" + teams[2] + "</span>"
+	            + "<span class='local-team'>" + teams4[0] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[2] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 6</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[3] + "</span>"
-		    + "<span class='visitor-team'>" + teams[0] + "</span>"
+	            + "<span class='local-team'>" + teams4[3] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[0] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + teams[2] + "</span>"
-		    + "<span class='visitor-team'>" + teams[1] + "</span>"
+	            + "<span class='local-team'>" + teams4[2] + "</span>"
+		    + "<span class='visitor-team'>" + teams4[1] + "</span>"
 		+ "</div>"
 	    + "</div>"	    
 	+ "</div>"
