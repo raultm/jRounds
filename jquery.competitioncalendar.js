@@ -17,9 +17,6 @@
    }; 
 
    competitionCalendar.scaffoldOutputView = function(element) {
-       
-	
-	
 	var html = 
 		  "<div id='output-fixtures'>"
 			+ "<div id='plain-text'></div>"
@@ -30,20 +27,16 @@
    }
 
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
-       
-	var settingOption = '';var teamsLength = competitionCalendar.options.teamsLength;
-	
+        var settingOption = '';var teamsLength = competitionCalendar.options.teamsLength;
 	settingOption += 
 			"<div class='setting-option-div'>"
 			    + "<label for='setting-option-teams-length'>Number of Teams : <label>"			
 			    + "<input type='text' name='teamsLength' class='setting-option' value='" + teamsLength + "'/>"
 			+ "</div>";
-
 	var html = 
 		  "<div id='settings-insertion'>"
 			+ settingOption
 	        + "</div>";
-		                                  
 	$(element).html(html);
    }
 
@@ -51,7 +44,6 @@
 	var settingInputs = $('.setting-option');
 	var settings = {}
 	var settingJSON = {}
-
 	$.each(settingInputs,function( index, settingInput ) { 
 		settingName = $(settingInput).attr('name');
 		settingValue = $(settingInput).val();
@@ -63,10 +55,8 @@
    }
 
    competitionCalendar.scaffoldTeamNamesInsertion = function(element) {
-	
 	var nameInputs = '';
 	var teamsLength = competitionCalendar.options.teamsLength;
-
 	for(position = 0; position<teamsLength; position++ ){
 		frontendPosition = position + 1;
 		nameInputs += 
@@ -75,12 +65,10 @@
 			    + "<input type='text' name='team-name-input-" + position + "' class='team-name-input' value='Team " + frontendPosition + "'/>"
 			+ "</div>";
 	}
-
 	var html = 
 		  "<div id='team-names-insertion'>"
 			+ nameInputs
 	        + "</div>";
-		                                  
 	$(element).html(html);
    };
 
@@ -106,21 +94,16 @@
 		html += "</div>"
 	});
 	fixturesHtml = "<div id='show-fixtures'>" + html + "</div>";
-	
 	$(element).html(fixturesHtml);	
-
-   }
+    }
 
    competitionCalendar.getFixtures = function(teams) {
 	if(!teams){ return null; }
-	
 	teamsCount = 0;for(team in teams){teamsCount++;}
 	if(teamsCount == 0){ return null; }
-	
 	fixtures = {'weeks' : {} };
 	match = {};
 	halfTeamsCount = teamsCount/2;
-	
 	for(week=0; week<(teamsCount-1)*2; week++){
 		frontEndWeek = week + 1;
 		fixtures.weeks[frontEndWeek] = { "matches" : {} };
@@ -137,8 +120,7 @@
 			};
 		}
 	}
-
-      	return fixtures;
+	return fixtures;
    };
 
    competitionCalendar.rotateTeamsJSON = function(teamsToRotate){
@@ -159,7 +141,6 @@
 	fixtureOutput	= "";
 	weeksOutput 	= "";
 	matchesOutput 	= "";
-
 	$.each(fixtureJson.weeks,function( weekIndex, week ) { 
 	    matchesOutput = "";
 	    $.each(week.matches,function( matchIndex, match ) { 
@@ -175,7 +156,6 @@
 		+ matchesOutput
 	    + "</div>"
 	});
-	
 	fixtureOutput = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
 	    + weeksOutput
