@@ -16,6 +16,11 @@
 	, 'names'    : 'team-names-insertion'
 	, 'output'   : 'output-fixtures'
    }
+
+   competitionCalendar.outputMenu = {
+	  'plain'    : 'plain-text'
+	, 'verbose'  : 'verbose'
+   }
    
    competitionCalendar.overrideOptions = function(options) {
       competitionCalendar.options = $.extend({}, competitionCalendar.defaultOptions, options);
@@ -35,8 +40,8 @@
    competitionCalendar.scaffoldModule = function(element){
 	var html = "<div id='competition-calendar'></div>"; 
 	var competitionId = '#competition-calendar';
-	var plainTextId = '#plain-text';
-	var verboseId = '#verbose';
+	var plainTextId = '#' + competitionCalendar.outputMenu.plain;
+	var verboseId = '#' + competitionCalendar.outputMenu.verbose;
 	$(element).append(html);
   	competitionCalendar.scaffoldSettingsInsertion($(competitionId));
 	competitionCalendar.scaffoldTeamNamesInsertion($(competitionId));
@@ -47,10 +52,10 @@
    }
 
    competitionCalendar.scaffoldOutputView = function(element) {
-	var html = 
-		  "<div id='output-fixtures'>"
-			+ "<div id='plain-text'></div>"
-			+ "<textarea id='verbose'></div>"
+    	var html = 
+		  "<div id='" + competitionCalendar.menu.output + "'>"
+			+ "<div id='" + competitionCalendar.outputMenu.plain + "'></div>"
+			+ "<textarea id='" + competitionCalendar.outputMenu.verbose + "'></div>"
 	        + "</div>";
 		                                  
 	$(element).append(html);
@@ -59,7 +64,7 @@
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
         var settingOption = '';var teamsLength = competitionCalendar.options.teamsLength;
 	settingOption += 
-			"<div class='setting-option-div'>"
+			"<div class='" + competitionCalendar.menu.settings + "'>"
 			    + "<label for='setting-option-teams-length'>Number of Teams : <label>"			
 			    + "<input type='text' name='teamsLength' class='setting-option' value='" + teamsLength + "'/>"
 			+ "</div>";
@@ -96,7 +101,7 @@
 			+ "</div>";
 	}
 	var html = 
-		  "<div id='team-names-insertion'>"
+		  "<div id='" + competitionCalendar.menu.names + "'>"
 			+ nameInputs
 	        + "</div>";
 	$(element).append(html);
