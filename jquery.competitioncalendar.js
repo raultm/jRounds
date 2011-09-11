@@ -11,37 +11,39 @@
    };
 
    competitionCalendar.options = null;
-   competitionCalendar.menu = {
-	  'settings' : 'setting-option-div'
-	, 'names'    : 'team-names-insertion'
-	, 'output'   : 'output-fixtures'
+   competitionCalendar.structure = {
+	  'settings' : 
+		{ "id" : 'setting-option-div' }
+	, 'names'    : 
+		{ 'id' : 'team-names-insertion' }
+	, 'output'   : 
+		{ 'id' : 'output-fixtures'
+		, 'options' : 
+			{ 'plain' : { 'id' : 'plain-text'}
+			, 'verbose' : { 'id' : 'verbose'}
+		}}
    }
 
-   competitionCalendar.outputMenu = {
-	  'plain'    : 'plain-text'
-	, 'verbose'  : 'verbose'
-   }
-   
    competitionCalendar.overrideOptions = function(options) {
       competitionCalendar.options = $.extend({}, competitionCalendar.defaultOptions, options);
    }; 
 
    competitionCalendar.showContent = function(element){
-	menu = competitionCalendar.menu;
+	structure = competitionCalendar.structure;
 	elementSelected = element;
-	$.each(menu,function( contentIndex, contentIdentifier ) {
-	    if(contentIdentifier == element)
-		$('#' + contentIdentifier).show();
+	$.each(structure,function( contentIndex, contentIdentifier ) {
+	    if(contentIdentifier.id == element)
+		$('#' + contentIdentifier.id).show();
 	    else
-		$('#' + contentIdentifier).hide();
+		$('#' + contentIdentifier.id).hide();
 	});
    }
    
    competitionCalendar.scaffoldModule = function(element){
 	var html = "<div id='competition-calendar'></div>"; 
 	var competitionId = '#competition-calendar';
-	var plainTextId = '#' + competitionCalendar.outputMenu.plain;
-	var verboseId = '#' + competitionCalendar.outputMenu.verbose;
+	var plainTextId = '#' + competitionCalendar.structure.output.options.plain.id;
+	var verboseId = '#' + competitionCalendar.structure.output.options.verbose.id;
 	$(element).append(html);
   	competitionCalendar.scaffoldSettingsInsertion($(competitionId));
 	competitionCalendar.scaffoldTeamNamesInsertion($(competitionId));
@@ -53,9 +55,9 @@
 
    competitionCalendar.scaffoldOutputView = function(element) {
     	var html = 
-		  "<div id='" + competitionCalendar.menu.output + "'>"
-			+ "<div id='" + competitionCalendar.outputMenu.plain + "'></div>"
-			+ "<textarea id='" + competitionCalendar.outputMenu.verbose + "'></div>"
+		  "<div id='" + competitionCalendar.structure.output.id + "'>"
+			+ "<div id='" + competitionCalendar.structure.output.options.plain.id + "'></div>"
+			+ "<textarea id='" + competitionCalendar.structure.output.options.verbose.id + "'></div>"
 	        + "</div>";
 		                                  
 	$(element).append(html);
@@ -64,7 +66,7 @@
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
         var settingOption = '';var teamsLength = competitionCalendar.options.teamsLength;
 	settingOption += 
-			"<div class='" + competitionCalendar.menu.settings + "'>"
+			"<div class='" + competitionCalendar.structure.settings.id + "'>"
 			    + "<label for='setting-option-teams-length'>Number of Teams : <label>"			
 			    + "<input type='text' name='teamsLength' class='setting-option' value='" + teamsLength + "'/>"
 			+ "</div>";
@@ -101,7 +103,7 @@
 			+ "</div>";
 	}
 	var html = 
-		  "<div id='" + competitionCalendar.menu.names + "'>"
+		  "<div id='" + competitionCalendar.structure.names.id + "'>"
 			+ nameInputs
 	        + "</div>";
 	$(element).append(html);

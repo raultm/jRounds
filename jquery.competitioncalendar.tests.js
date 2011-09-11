@@ -124,17 +124,17 @@ test("Scaffold Complete Module", function() {
 
 test("showContent", function() {
 	$.competitionCalendar.scaffoldModule($(testTargetId));
-	menu = $.competitionCalendar.menu;
-	countMenuElements = 0; for(element in menu){countMenuElements++;}
+	structure = $.competitionCalendar.structure;
+	countMenuElements = 0; for(element in structure){countMenuElements++;}
 	ok(countMenuElements, "El menú tiene al menos un elemento");
 	
-	contentSelected = menu.settings;console.log(contentSelected);
+	contentSelected = structure.settings.id;console.log(contentSelected);
 	$.competitionCalendar.showContent(contentSelected);
-	$.each(menu,function( contentIndex, contentIdentifier ) {
-	    if(contentIdentifier == contentSelected)
-		ok(!$('#' + contentIdentifier).is(':hidden'), "El contenido no está oculto");
+	$.each(structure,function( contentIndex, contentIdentifier ) {
+	    if(contentIdentifier.id == contentSelected)
+		ok(!$('#' + contentIdentifier.id).is(':hidden'), "El contenido no está oculto");
 	    else
-		ok(!$('#' + contentIdentifier).is(':visible'), contentIdentifier + " está oculto");
+		ok(!$('#' + contentIdentifier.id).is(':visible'), contentIdentifier + " está oculto");
 	});
 	
 });
