@@ -182,24 +182,30 @@ test("showContent", function() {
 	
 });
 
-module("Events");
+module("Events", {
+    setup: function() {    
+ 	$(targetId).empty();  
+	$(testTargetId).empty();  
+	$.competitionCalendar.overrideOptions({});
+    },
+    teardown: function() {}
+});
 
 test("Add Menu Funcionality", function() {
    $.competitionCalendar.overrideOptions({ teamsLength : 4 });
-   $.competitionCalendar.scaffoldModule($(targetId));
-   $.competitionCalendar.addMenuFuncionality();
+   $.competitionCalendar.scaffoldModule($(testTargetId));
+   $.competitionCalendar.addMenuFunctionality();
 
    structure = $.competitionCalendar.structure;
    menuId = "#menu-output";
-   divId = "#" + structure.output.id;
+   divId = structure.output.id;
    
-   $(settingMenuId).click();
-   $.competitionCalendar.showContent(contentSelected);
+   $(menuId).click();
    $.each(structure,function( contentIndex, contentIdentifier ) {
-   	if(contentIdentifier.id == settingId)
-	    ok(!$('#' + contentIdentifier.id).is(':hidden'), "El contenido no está oculto");
+	if(contentIdentifier.id == divId)
+	    ok(!$('#' + contentIdentifier.id).is(':hidden'), contentIdentifier.id + " no está oculto");
      	else
-	    ok(!$('#' + contentIdentifier.id).is(':visible'), contentIdentifier + " está oculto");
+	    ok(!$('#' + contentIdentifier.id).is(':visible'), contentIdentifier.id + " está oculto");
    });
 });
 
