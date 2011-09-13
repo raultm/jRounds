@@ -21,7 +21,8 @@
 		, 'options' : 
 			{ 'plain' : { 'id' : 'plain-text'}
 			, 'verbose' : { 'id' : 'verbose'}
-		}}
+		}
+	}
    }
 
    competitionCalendar.overrideOptions = function(options) {
@@ -61,6 +62,22 @@
 	        + "</div>";
 		                                  
 	$(element).append(html);
+   }
+
+   competitionCalendar.scaffoldMenu = function(element){
+	var menuLis = "";
+	for(structureElement in competitionCalendar.structure){
+            menuLis+= "<li class='menu-element' id='menu-" + structureElement + "'>" + structureElement + "</li>";
+	}
+	var menu =   "<div id='competition-menu'>"
+		   	+ "<ul>"
+			    + menuLis
+			+ "</ul>"
+		   + "</div>"
+	;
+	console.log(menu);
+	    
+	$(element).append(menu);
    }
 
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
