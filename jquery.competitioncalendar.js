@@ -41,9 +41,16 @@
    }
    
    competitionCalendar.addMenuFunctionality = function(){
-	$('#' + competitionCalendar.structure.settings.id).hide();
-	$('#' + competitionCalendar.structure.names.id).hide();
-	$('#' + competitionCalendar.structure.output.id).show();
+	$('.menu-element').click(function(){
+	    id = $(this).attr('id');
+	    divId = id.replace('menu-', '');
+	    $.each(structure,function( contentIndex, contentIdentifier ) {
+	    	if(contentIdentifier.id == divId)
+		    $('#' + contentIdentifier.id).show();
+	    	else
+		    $('#' + contentIdentifier.id).hide();
+	    });
+	});
    }
 
    competitionCalendar.scaffoldModule = function(element){
