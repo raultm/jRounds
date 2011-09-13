@@ -13,7 +13,7 @@
    competitionCalendar.options = null;
    competitionCalendar.structure = {
 	  'settings' : 
-		{ "id" : 'setting-option-div' }
+		{ "id" : 'settings-insertion' }
 	, 'names'    : 
 		{ 'id' : 'team-names-insertion' }
 	, 'output'   : 
@@ -42,10 +42,12 @@
    
    competitionCalendar.addMenuFunctionality = function(){
 	$('.menu-element').click(function(){
-	    id = $(this).attr('id');
-	    divId = id.replace('menu-', '');
+  	    var id = $(this).attr('id');
+	    var divId = id.replace('menu-', '');
+	    var structure = competitionCalendar.structure;
 	    $.each(structure,function( contentIndex, contentIdentifier ) {
-	    	if(contentIdentifier.id == divId)
+		console.log(contentIdentifier.id + " == " + structure[divId].id);
+	    	if(contentIdentifier.id == structure[divId].id)
 		    $('#' + contentIdentifier.id).show();
 	    	else
 		    $('#' + contentIdentifier.id).hide();
@@ -90,17 +92,18 @@
 		   + "</div>"
 	;
 	$(element).append(menu);
+	
    }
 
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
         var settingOption = '';var teamsLength = competitionCalendar.options.teamsLength;
 	settingOption += 
-			"<div class='" + competitionCalendar.structure.settings.id + "'>"
+			"<div class='setting-option-div'>"
 			    + "<label for='setting-option-teams-length'>Number of Teams : <label>"			
 			    + "<input type='text' name='teamsLength' class='setting-option' value='" + teamsLength + "'/>"
 			+ "</div>";
 	var html = 
-		  "<div id='settings-insertion'>"
+		  "<div id='" + competitionCalendar.structure.settings.id + "'>"
 			+ settingOption
 	        + "</div>";
 	$(element).append(html);

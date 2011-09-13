@@ -196,13 +196,13 @@ test("Add Menu Funcionality - Click Output", function() {
    $.competitionCalendar.scaffoldModule($(testTargetId));
    $.competitionCalendar.addMenuFunctionality();
 
-   structure = $.competitionCalendar.structure;
-   menuId = "#menu-output";
-   divId = structure.output.id;
-   
+   var structure = $.competitionCalendar.structure;
+   var menuId = "#menu-output";
+   var divId = structure.output.id;
+    
    $(menuId).click();
    $.each(structure,function( contentIndex, contentIdentifier ) {
-	if(contentIdentifier.id == divId)
+        if(contentIdentifier.id == divId)
 	    ok(!$('#' + contentIdentifier.id).is(':hidden'), contentIdentifier.id + " no está oculto");
      	else
 	    ok(!$('#' + contentIdentifier.id).is(':visible'), contentIdentifier.id + " está oculto");
