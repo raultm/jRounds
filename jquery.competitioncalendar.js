@@ -46,6 +46,7 @@
 	var plainTextId = '#' + competitionCalendar.structure.output.options.plain.id;
 	var verboseId = '#' + competitionCalendar.structure.output.options.verbose.id;
 	$(element).append(html);
+	competitionCalendar.scaffoldMenu($(competitionId));
   	competitionCalendar.scaffoldSettingsInsertion($(competitionId));
 	competitionCalendar.scaffoldTeamNamesInsertion($(competitionId));
 	competitionCalendar.scaffoldOutputView($(competitionId));

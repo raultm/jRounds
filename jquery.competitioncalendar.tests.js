@@ -72,18 +72,18 @@ module("UI", {
     teardown: function() {}
 });
 
-test("Scaffold Output View", function() {
-   $.competitionCalendar.scaffoldOutputView($(targetId));
-   ok($(targetId).find('#output-fixtures').length, 'Prepare to view Output');
-   same($('#plain-text').size(), 1, "We have '#plain-text'");
-   same($('#verbose').size(), 1, "We have '#verbose'");
-});
-
 test("Scaffold Menu", function() {
    $.competitionCalendar.scaffoldMenu($(targetId));
    structure = $.extend(true, {},$.competitionCalendar.structure);
    countElements = 0; for(properties in structure){ countElements++; }
    same($('.menu-element').size(), countElements, "We have " + countElements + " '.menu-element'");
+});
+
+test("Scaffold Output View", function() {
+   $.competitionCalendar.scaffoldOutputView($(targetId));
+   ok($(targetId).find('#output-fixtures').length, 'Prepare to view Output');
+   same($('#plain-text').size(), 1, "We have '#plain-text'");
+   same($('#verbose').size(), 1, "We have '#verbose'");
 });
 
 test("Scaffold Settings' Form", function() {
@@ -153,6 +153,7 @@ test("Scaffold Complete Module", function() {
    
    
    ok($(targetId).find('#competition-calendar').length, 'Main Div Created');
+   ok($(targetId).find('#competition-menu').length, 'Menu Div Created');
    ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
    same($('.setting-option-div').size(), 1, "We have 1 '.setting-option-div'");
    ok($(targetId).find('.setting-option-div [name$="teamsLength"]').length, 'Exists Teams Length Setting');
