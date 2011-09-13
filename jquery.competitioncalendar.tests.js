@@ -191,7 +191,7 @@ module("Events", {
     teardown: function() {}
 });
 
-test("Add Menu Funcionality", function() {
+test("Add Menu Funcionality - Click Output", function() {
    $.competitionCalendar.overrideOptions({ teamsLength : 4 });
    $.competitionCalendar.scaffoldModule($(testTargetId));
    $.competitionCalendar.addMenuFunctionality();
@@ -199,6 +199,24 @@ test("Add Menu Funcionality", function() {
    structure = $.competitionCalendar.structure;
    menuId = "#menu-output";
    divId = structure.output.id;
+   
+   $(menuId).click();
+   $.each(structure,function( contentIndex, contentIdentifier ) {
+	if(contentIdentifier.id == divId)
+	    ok(!$('#' + contentIdentifier.id).is(':hidden'), contentIdentifier.id + " no está oculto");
+     	else
+	    ok(!$('#' + contentIdentifier.id).is(':visible'), contentIdentifier.id + " está oculto");
+   });
+});
+
+test("Add Menu Funcionality - Click Names", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 4 });
+   $.competitionCalendar.scaffoldModule($(testTargetId));
+   $.competitionCalendar.addMenuFunctionality();
+
+   structure = $.competitionCalendar.structure;
+   menuId = "#menu-names";
+   divId = structure.names.id;
    
    $(menuId).click();
    $.each(structure,function( contentIndex, contentIdentifier ) {
