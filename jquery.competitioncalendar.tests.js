@@ -182,6 +182,27 @@ test("showContent", function() {
 	
 });
 
+module("Events");
+
+test("Add Menu Funcionality", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 4 });
+   $.competitionCalendar.scaffoldModule($(targetId));
+   $.competitionCalendar.addMenuFuncionality();
+
+   structure = $.competitionCalendar.structure;
+   menuId = "#menu-output";
+   divId = "#" + structure.output.id;
+   
+   $(settingMenuId).click();
+   $.competitionCalendar.showContent(contentSelected);
+   $.each(structure,function( contentIndex, contentIdentifier ) {
+   	if(contentIdentifier.id == settingId)
+	    ok(!$('#' + contentIdentifier.id).is(':hidden'), "El contenido no está oculto");
+     	else
+	    ok(!$('#' + contentIdentifier.id).is(':visible'), contentIdentifier + " está oculto");
+   });
+});
+
 module("Core");
 
 test("rotateTeamsJSON Function receive teams param empty", function() {
