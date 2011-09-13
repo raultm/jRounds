@@ -40,6 +40,12 @@
 	});
    }
    
+   competitionCalendar.addMenuFunctionality = function(){
+	$('#' + competitionCalendar.structure.settings.id).hide();
+	$('#' + competitionCalendar.structure.names.id).hide();
+	$('#' + competitionCalendar.structure.output.id).show();
+   }
+
    competitionCalendar.scaffoldModule = function(element){
 	var html = "<div id='competition-calendar'></div>"; 
 	var competitionId = '#competition-calendar';
@@ -76,8 +82,6 @@
 			+ "</ul>"
 		   + "</div>"
 	;
-	console.log(menu);
-	    
 	$(element).append(menu);
    }
 
@@ -163,7 +167,6 @@
 		frontEndWeek = week + 1;
 		fixtures.weeks[frontEndWeek] = { "matches" : {} };
 		rotatedTeams = this.rotateTeamsJSON(rotatedTeams);
-		console.log(rotatedTeams);
 		for(rotatedTeamsIndex=0; rotatedTeamsIndex < halfTeamsCount; rotatedTeamsIndex++){
 			
 			if(rotatedTeamsIndex==0 && (week%2)==0)	{ local   = rotatedTeamsIndex; 	visitor = teamsCount - rotatedTeamsIndex - 1; }
