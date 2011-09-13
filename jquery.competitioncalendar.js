@@ -139,21 +139,22 @@
 	teamsCount = 0;for(team in teams){teamsCount++;}
 	if(teamsCount == 0){ return null; }
 	fixtures = {'weeks' : {} };
-	match = {};
+	rotatedTeams = $.extend(true, {}, teams);
 	halfTeamsCount = teamsCount/2;
 	for(week=0; week<(teamsCount-1)*2; week++){
 		frontEndWeek = week + 1;
 		fixtures.weeks[frontEndWeek] = { "matches" : {} };
-		rotatedTeams = this.rotateTeamsJSON(teams);
+		rotatedTeams = this.rotateTeamsJSON(rotatedTeams);
+		console.log(rotatedTeams);
 		for(rotatedTeamsIndex=0; rotatedTeamsIndex < halfTeamsCount; rotatedTeamsIndex++){
 			
-			if(rotatedTeamsIndex==0 && (week%2)==0)	{ local = rotatedTeamsIndex; 	visitor = teamsCount - rotatedTeamsIndex - 1; }
-			else if(rotatedTeamsIndex==0)		{ local = teamsCount - rotatedTeamsIndex- 1; 	visitor = rotatedTeamsIndex; }
-			else if((rotatedTeamsIndex%2)==0)	{ local = rotatedTeamsIndex; 	visitor = teamsCount - rotatedTeamsIndex - 1; }
-			else					{ local = teamsCount - rotatedTeamsIndex- 1; 	visitor = rotatedTeamsIndex; }
+			if(rotatedTeamsIndex==0 && (week%2)==0)	{ local   = rotatedTeamsIndex; 	visitor = teamsCount - rotatedTeamsIndex - 1; }
+			else if(rotatedTeamsIndex==0)		{ visitor = rotatedTeamsIndex;	local   = teamsCount - rotatedTeamsIndex - 1; 	 }
+			else if((rotatedTeamsIndex%2)==0)	{ local   = rotatedTeamsIndex; 	visitor = teamsCount - rotatedTeamsIndex - 1; }
+			else					{ visitor = rotatedTeamsIndex;  local   = teamsCount - rotatedTeamsIndex - 1; 	 }
 			fixtures.weeks[frontEndWeek].matches[rotatedTeamsIndex] = {
-				  'local' : teams[local]
-				, 'visitor' : teams[visitor]
+				  'local' : rotatedTeams[local]
+				, 'visitor' : rotatedTeams[visitor]
 			};
 		}
 	}
@@ -161,7 +162,7 @@
    };
 
    competitionCalendar.rotateTeamsJSON = function(teamsToRotate){
-	teamsRotates = teamsToRotate;
+	teamsRotates = $.extend(true, {}, teamsToRotate);
 	sizeOfTeamsToRotate = 0;for(team in teamsToRotate){sizeOfTeamsToRotate++;}
 	elementToRotate_1 = teamsRotates[sizeOfTeamsToRotate-2];
 	elementToRotate_2 = {};

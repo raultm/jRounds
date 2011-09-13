@@ -2,10 +2,45 @@ module("Beginning");
 
 var targetId = "#qunit-target";
 var testTargetId = "#qunit-target-test";
-var teams2 = {}
-var fixtures2 = {}
-var teams4 = {}
-var fixtures4 = {}
+var teams2 = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+}
+var fixtures2 = {
+	  'weeks' : { 
+		  '1' : { 'matches' : { '0' : {  'local' : teams2[0], 'visitor' : teams2[1] } } } 
+		, '2' : { 'matches' : { '0' : {  'local' : teams2[1], 'visitor' : teams2[0] } } } 
+	}
+}
+
+var teams4 = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+	, '2' : 'team3'
+	, '3' : 'team4'
+}
+var fixtures4 = {
+	"weeks": {
+	    "1": {
+	      "matches": { "0": { "local": teams4[2], "visitor": teams4[3]}, "1": { "local": teams4[1], "visitor": teams4[0] } }
+	    },
+	    "2": {
+	      "matches": { "0": { "local": teams4[3], "visitor": teams4[1]}, "1": { "local": teams4[0], "visitor": teams4[2] } }
+	    },
+	    "3": {
+	      "matches": { "0": { "local": teams4[0], "visitor": teams4[3]}, "1": { "local": teams4[2], "visitor": teams4[1] } }
+	    },
+	    "4": {
+	      "matches": { "0": { "local": teams4[3], "visitor": teams4[2]}, "1": { "local": teams4[1], "visitor": teams4[0] } }
+	    },
+	    "5": {
+	      "matches": { "0": { "local": teams4[1], "visitor": teams4[3]}, "1": { "local": teams4[0], "visitor": teams4[2] } }
+	    },
+	    "6": {
+	      "matches": { "0": { "local": teams4[3], "visitor": teams4[0]}, "1": { "local": teams4[2], "visitor": teams4[1] } }
+	    }
+    }
+}
 
 
 test("Default Options", function() {
@@ -128,7 +163,7 @@ test("showContent", function() {
 	countMenuElements = 0; for(element in structure){countMenuElements++;}
 	ok(countMenuElements, "El menú tiene al menos un elemento");
 	
-	contentSelected = structure.settings.id;console.log(contentSelected);
+	contentSelected = structure.settings.id;
 	$.competitionCalendar.showContent(contentSelected);
 	$.each(structure,function( contentIndex, contentIdentifier ) {
 	    if(contentIdentifier.id == contentSelected)
@@ -139,51 +174,7 @@ test("showContent", function() {
 	
 });
 
-module("Core",{
-	setup : function(){
-	
-	   teams2 = {
-	    	  '0' : 'team1'
-	 	, '1' : 'team2'
-	   }
-	   fixtures2 = {
-		  'weeks' : { 
-	    		  '1' : { 'matches' : { '0' : {  'local' : teams2[0], 'visitor' : teams2[1] } } } 
-			, '2' : { 'matches' : { '0' : {  'local' : teams2[1], 'visitor' : teams2[0] } } } 
-		}
-	    }
-
-	   teams4 = {
-	    	  '0' : 'team1'
-	 	, '1' : 'team2'
-		, '2' : 'team3'
-		, '3' : 'team4'
-	   }
-	   fixtures4 = {
-		  "weeks": {
-		    "1": {
-		      "matches": { "0": { "local": teams4[2], "visitor": teams4[3]}, "1": { "local": teams4[1], "visitor": teams4[0] } }
-		    },
-		    "2": {
-		      "matches": { "0": { "local": teams4[3], "visitor": teams4[1]}, "1": { "local": teams4[0], "visitor": teams4[2] } }
-		    },
-		    "3": {
-		      "matches": { "0": { "local": teams4[0], "visitor": teams4[3]}, "1": { "local": teams4[2], "visitor": teams4[1] } }
-		    },
-		    "4": {
-		      "matches": { "0": { "local": teams4[3], "visitor": teams4[2]}, "1": { "local": teams4[1], "visitor": teams4[0] } }
-		    },
-		    "5": {
-		      "matches": { "0": { "local": teams4[1], "visitor": teams4[3]}, "1": { "local": teams4[0], "visitor": teams4[2] } }
-		    },
-		    "6": {
-		      "matches": { "0": { "local": teams4[3], "visitor": teams4[0]}, "1": { "local": teams4[2], "visitor": teams4[1] } }
-		    }
-		  }
-	    }
-	}
-
-});
+module("Core");
 
 test("rotateTeamsJSON Function receive teams param empty", function() {
     teams = {};
