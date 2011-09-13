@@ -79,6 +79,13 @@ test("Scaffold Output View", function() {
    same($('#verbose').size(), 1, "We have '#verbose'");
 });
 
+test("Scaffold Menu", function() {
+   $.competitionCalendar.scaffoldMenu($(targetId));
+   structure = $.extend(true, {},$.competitionCalendar.structure);
+   countElements = 0; for(properties in structure){ countElements++; }
+   same($('.menu-element').size(), countElements, "We have " + countElements + " '.menu-element'");
+});
+
 test("Scaffold Settings' Form", function() {
    $.competitionCalendar.scaffoldSettingsInsertion($(targetId));
    ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
