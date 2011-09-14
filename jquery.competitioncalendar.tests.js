@@ -227,6 +227,14 @@ test("Add Menu Funcionality - Click Names", function() {
    });
 });
 
+test("Add Refresh Funcionality - Change Team Number", function() {
+   $.competitionCalendar.overrideOptions({ teamsLength : 8 });
+   $.competitionCalendar.scaffoldModule($(testTargetId));
+   $('input[name="teamsLength"]').val(6).trigger('change');
+   same($('.team-name-input-div').size(), 6, "We have 6 '.team-name-input-div'");
+   
+});
+
 module("Core");
 
 test("rotateTeamsJSON Function receive teams param empty", function() {
