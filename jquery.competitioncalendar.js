@@ -55,6 +55,17 @@
 	});
    }
 
+   competitionCalendar.addChangeTeamNumberFunctionality = function(){
+   	$('input[name="teamsLength"]').change(function(){
+   		var value = $(this).val();
+  	    var options = { teamsLength : value }
+  	    competitionCalendar.overrideOptions(options)
+  	    console.log(options);
+  	    $('#qunit-target-test').html('');
+  	    competitionCalendar.scaffoldModule( $('#qunit-target-test'));
+	});
+   }
+
    competitionCalendar.scaffoldModule = function(element){
 	var html = "<div id='competition-calendar'></div>"; 
 	var competitionId = '#competition-calendar';
@@ -92,7 +103,7 @@
 		   + "</div>"
 	;
 	$(element).append(menu);
-	
+	competitionCalendar.addMenuFunctionality();
    }
 
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
@@ -139,6 +150,7 @@
 			+ nameInputs
 	        + "</div>";
 	$(element).append(html);
+	competitionCalendar.addChangeTeamNumberFunctionality();
    };
 
    competitionCalendar.getTeamNames = function(){
