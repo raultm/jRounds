@@ -37,8 +37,8 @@
 	, 'teamVisitor'	: "team-visitor"
 	, 'weekFixtures': "week-fixtures"
 	, 'weekName'	: "week-name"
-	, 'CompetitionFixture'	: "competition-fixture"
-	, 'CompetitionName'	: "competition-name"
+	, 'competitionFixture'	: "competition-fixture"
+	, 'competitionName'	: "competition-name"
    }
   
    competitionCalendar.overrideOptions = function(options) {
@@ -232,21 +232,7 @@
 	}
 	return teamsRotates;
    }
-   competitionCalendar.classes = {
-	  'menuItem' 	: "menu-element" 
-	, 'settingDiv'  : "setting-option-div"
-	, 'teamNameDiv' : "team-name-input-div"
-	, 'weekContent' : "week-content"
-	, 'weekTitle'   : "week-title"
-	, 'matchContent': "match-content"
-	, 'teamName'	: "team-name"
-	, 'teamLocal'	: "team-local"
-	, 'teamVisitor'	: "team-visitor"
-	, 'weekFixtures': "week-fixtures"
-	, 'weekName'	: "week-name"
-	, 'competitionFixture'	: "competition-fixture"
-	, 'competitionName'	: "competition-name"
-   }
+   
    competitionCalendar.parseFixtureJson2FixtureOutput = function(fixtureJson){
 	
 	fixtureOutput	= "";
