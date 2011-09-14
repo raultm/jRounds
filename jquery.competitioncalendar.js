@@ -25,6 +25,18 @@
 	}
    }
 
+   competitionCalendar.classes = {
+	  'menuItem' 	: "menu-element" 
+	, 'settingDiv'  : "setting-option-div"
+	, 'teamNameDiv' : "team-name-input-div"
+	, 'weekContent' : "week-content"
+	, 'weekTitle'   : "week-title"
+	, 'matchContent': "match-content"
+	, 'teamName'	: "team-name"
+	, 'teamLocal'	: "team-local"
+	, 'teamVisitor'	: "team-visitor"
+   }
+
    competitionCalendar.overrideOptions = function(options) {
       competitionCalendar.options = $.extend({}, competitionCalendar.defaultOptions, options);
    }; 
@@ -94,7 +106,7 @@
    competitionCalendar.scaffoldMenu = function(element){
 	var menuLis = "";
 	for(structureElement in competitionCalendar.structure){
-            menuLis+= "<li class='menu-element' id='menu-" + structureElement + "'>" + structureElement + "</li>";
+            menuLis+= "<li class='" + competitionCalendar.classes.menuItem + "' id='menu-" + structureElement + "'>" + structureElement + "</li>";
 	}
 	var menu =   "<div id='competition-menu'>"
 		   	+ "<ul>"
@@ -109,7 +121,7 @@
    competitionCalendar.scaffoldSettingsInsertion = function(element) {
         var settingOption = '';var teamsLength = competitionCalendar.options.teamsLength;
 	settingOption += 
-			"<div class='setting-option-div'>"
+			"<div class='" + competitionCalendar.classes.settingDiv + "'>"
 			    + "<label for='setting-option-teams-length'>Number of Teams : <label>"			
 			    + "<input type='text' name='teamsLength' class='setting-option' value='" + teamsLength + "'/>"
 			+ "</div>";
@@ -140,7 +152,7 @@
 	for(position = 0; position<teamsLength; position++ ){
 		frontendPosition = position + 1;
 		nameInputs += 
-			"<div class='team-name-input-div'>"
+			"<div class='" + competitionCalendar.classes.teamNameDiv +"'>"
 			    + "<label for='team-name-input-" + position + "'>Team Name " + frontendPosition + " : <label>"			
 			    + "<input type='text' name='team-name-input-" + position + "' class='team-name-input' value='Team " + frontendPosition + "'/>"
 			+ "</div>";
@@ -163,12 +175,12 @@
 	var fixtures = competitionCalendar.getFixtures(teams);
 	var html = '';
 	$.each(fixtures.weeks,function( weekIndex, week ) { 
-		html += "<div class='week-content'>";
-		html += "<div class='week-title'>Week " + weekIndex + "</div>";  
+		html += "<div class='" + competitionCalendar.classes.weekContent + "'>";
+		html += "<div class='" + competitionCalendar.classes.weekTitle + "'>Week " + weekIndex + "</div>";  
 		$.each(week.matches,function( matchIndex, match ) { 
 			html += "<div class='match-content'>"
-					+ "<div class='team-name team-local'>" + match.local + "</div>"
-					+ "<div class='team-name team-local'>" + match.visitor + "</div>"
+					+ "<div class='" + competitionCalendar.classes.teamName + " " + competitionCalendar.classes.teamLocal + "'>" + match.local + "</div>"
+					+ "<div class='" + competitionCalendar.classes.teamName + " " + competitionCalendar.classes.teamVisitor + "'>" + match.visitor + "</div>"
 				+"</div>"; 
 
 		});
@@ -227,8 +239,8 @@
 	    $.each(week.matches,function( matchIndex, match ) { 
 		matchesOutput+= 
 		  "<div class='match-fixtures'>"
-	            + "<span class='local-team'>" + match.local + "</span>"
-		    + "<span class='visitor-team'>" + match.visitor + "</span>"
+	            + "<span class='" + competitionCalendar.classes.teamLocal + "'>" + match.local + "</span>"
+		    + "<span class='" + competitionCalendar.classes.teamVisitor + "'>" + match.visitor + "</span>"
 		+ "</div>"		    
 	    });
 	    weeksOutput += 
