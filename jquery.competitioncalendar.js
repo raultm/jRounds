@@ -177,20 +177,7 @@
 
    competitionCalendar.showFixtures = function( teams, element ){
 	var fixtures = competitionCalendar.getFixtures(teams);
-	var html = '';
-	$.each(fixtures.weeks,function( weekIndex, week ) { 
-		html += "<div class='" + competitionCalendar.classes.weekContent + "'>";
-		html += "<div class='" + competitionCalendar.classes.weekTitle + "'>Week " + weekIndex + "</div>";  
-		$.each(week.matches,function( matchIndex, match ) { 
-			html += "<div class='match-content'>"
-					+ "<div class='" + competitionCalendar.classes.teamName + " " + competitionCalendar.classes.teamLocal + "'>" + match.local + "</div>"
-					+ "<div class='" + competitionCalendar.classes.teamName + " " + competitionCalendar.classes.teamVisitor + "'>" + match.visitor + "</div>"
-				+"</div>"; 
-
-		});
-		html += "</div>"
-	});
-	fixturesHtml = "<div id='show-fixtures'>" + html + "</div>";
+	fixturesHtml = competitionCalendar.parseFixtureJson2FixtureOutput(fixtures);
 	$(element).html(fixturesHtml);	
     }
 

@@ -131,9 +131,9 @@ test("Scaffold Show Fixtures (2 teams)", function() {
    teamNames = $.competitionCalendar.getTeamNames();
    
    $.competitionCalendar.showFixtures( teamNames, targetId );
-   ok($(targetId).find('#show-fixtures').length, 'Exists div#show-fixtures');
-   same($('.week-content').size(), 2, "We have 2 '.week-content'");
-   same($('.match-content').size(), 2, "We have 2 '.match-content'");	
+   ok($(targetId).find('.competition-fixture').length, 'Exists div.competition-fixture');
+   same($('.week-fixtures').size(), 2, "We have 2 '.week-fixtures'");
+   same($('.match-fixtures').size(), 2, "We have 2 '.match-fixtures'");	
 });
 
 test("Scaffold Show Fixtures (4 teams)", function() {
@@ -142,9 +142,9 @@ test("Scaffold Show Fixtures (4 teams)", function() {
    teamNames = $.competitionCalendar.getTeamNames();
    
    $.competitionCalendar.showFixtures( teamNames, targetId );
-   ok($(targetId).find('#show-fixtures').length, 'Exists div#show-fixtures');
-   same($('.week-content').size(), 6, "We have 6 '.week-content'");
-   same($('.match-content').size(), 12, "We have 12 '.match-content'");	
+   ok($(targetId).find('.competition-fixture').length, 'Exists div.competition-fixture');
+   same($('.week-fixtures').size(), 6, "We have 6 '.week-fixtures'");
+   same($('.match-fixtures').size(), 12, "We have 12 '.match-fixtures'");	
 });
 
 test("Scaffold Complete Module", function() {
@@ -158,8 +158,8 @@ test("Scaffold Complete Module", function() {
    same($('.setting-option-div').size(), 1, "We have 1 '.setting-option-div'");
    ok($(targetId).find('.setting-option-div [name$="teamsLength"]').length, 'Exists Teams Length Setting');
    same($('.team-name-input-div').size(), 4, "We have 4 '.team-name-input-div'");
-   same($('.week-content').size(), 6, "We have 6 '.week-content'");
-   same($('.match-content').size(), 12, "We have 12 '.match-content'");
+   same($('.week-fixtures').size(), 6, "We have 6 '.week-fixtures'");
+   same($('.match-fixtures').size(), 12, "We have 12 '.match-fixtures'");
    ok($(targetId).find('#output-fixtures').length, 'Prepare to view Output');
    same($('#plain-text').size(), 1, "We have '#plain-text'");
    same($('#verbose').size(), 1, "We have '#verbose'");
