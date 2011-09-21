@@ -386,6 +386,10 @@ test("getLineMatch using replace", function() {
     same($.jRounds.getLineMatch(match), expectedString, "Line Match Ok");
 });
 
+test("getLineWeek passing null", function() {
+    var expectedString = '';
+    same($.jRounds.getLineWeek(), expectedString, "Line Match empty when no args ");
+});
 
 
 
