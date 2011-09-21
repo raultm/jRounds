@@ -398,6 +398,13 @@ test("getLineWeek using replace", function() {
     same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Match Ok");
 });
 
+test("getLineWeek using replace", function() {
+    var expectedString = "<div class='week-fixtures'><span class='week-name'>Week 3</span><div class='match-fixtures'><span class='team-local'>team2</span><span class='team-visitor'>team1</span></div></div>";
+    var weekId = 2;
+    var week = fixtures2.weeks[weekId];
+    same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Match Ok");
+});
+
 
 
 
