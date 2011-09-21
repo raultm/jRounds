@@ -405,6 +405,13 @@ test("getLineWeek using replace", function() {
     same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Match Ok");
 });
 
+test("getLineCompetition passing null", function() {
+    var expectedString = '';
+    same($.jRounds.getLineCompetition(), expectedString, "Line Week empty when no args ");
+});
+
+
+
 
 
 

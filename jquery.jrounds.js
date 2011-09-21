@@ -27,6 +27,10 @@
 
    jRounds.lines = {
 	  'match' : "<div class='match-fixtures'><span class='team-local'>{localTeamName}</span><span class='team-visitor'>{visitorTeamName}</span></div>"
+	, 'week':{
+	      'before' : "<div class='week-fixtures'><span class='week-name'>Week {weekNumber}</span>"
+	    , 'after'  : "</div>"
+	}
    }
 
    jRounds.classes = {
@@ -268,9 +272,9 @@
 	for(matchId in week.matches){
 	    matchesString += jRounds.getLineMatch(week.matches[matchId]); 
 	}
-	var lineWeekBefore = "<div class='week-fixtures'><span class='week-name'>Week {weekNumber}</span>";
+	var lineWeekBefore = jRounds.lines.week.before;
 	lineWeekBefore = lineWeekBefore.replace('{weekNumber}', weekId);
-	var lineWeekAfter  = "</div>";
+	var lineWeekAfter  = jRounds.lines.week.after;
 	
 	lineWeek = lineWeekBefore + matchesString + lineWeekAfter;
 	return lineWeek;
