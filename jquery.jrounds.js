@@ -261,4 +261,8 @@
 	lineMatch = lineMatch.replace('{visitorTeamName}', visitor);
 	return lineMatch;
    }
+
+   jRounds.getLineWeek = function(match){
+	return '';
+   }
 })(jQuery);
