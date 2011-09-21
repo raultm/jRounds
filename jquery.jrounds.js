@@ -262,7 +262,8 @@
 	return lineMatch;
    }
 
-   jRounds.getLineWeek = function(match){
-	return '';
+   jRounds.getLineWeek = function(weekId, week){
+	if(!week){return '';}
+	return "<div class='week-fixtures'><span class='week-name'>Week 3</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div></div>";
    }
 })(jQuery);

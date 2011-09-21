@@ -388,7 +388,14 @@ test("getLineMatch using replace", function() {
 
 test("getLineWeek passing null", function() {
     var expectedString = '';
-    same($.jRounds.getLineWeek(), expectedString, "Line Match empty when no args ");
+    same($.jRounds.getLineWeek(), expectedString, "Line Week empty when no args ");
+});
+
+test("getLineWeek using replace", function() {
+    var expectedString = "<div class='week-fixtures'><span class='week-name'>Week 3</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div></div>";
+    var weekId = 1;
+    var week = fixtures2.weeks[weekId];
+    same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Match Ok");
 });
 
 
