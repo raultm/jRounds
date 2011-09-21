@@ -415,6 +415,11 @@ test("getLineCompetition passing null", function() {
     same($.jRounds.getLineCompetition(fixtures2), expectedString, "Line Competition Ok");
 });
 
+test("addRestTeam passing null", function() {
+    var expectedString = {};
+    same($.jRounds.addRestTeam(), expectedString, "addRestTeam empty args emptyJSON");
+});
+
 
 
 
