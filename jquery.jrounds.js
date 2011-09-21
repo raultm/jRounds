@@ -264,6 +264,15 @@
 
    jRounds.getLineWeek = function(weekId, week){
 	if(!week){return '';}
-	return "<div class='week-fixtures'><span class='week-name'>Week 3</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div></div>";
+	matchesString = "";	
+	for(matchId in week.matches){
+	    matchesString += jRounds.getLineMatch(week.matches[matchId]); 
+	}
+	var lineWeekBefore = "<div class='week-fixtures'><span class='week-name'>Week {weekNumber}</span>";
+	lineWeekBefore = lineWeekBefore.replace('{weekNumber}', weekId);
+	var lineWeekAfter  = "</div>";
+	
+	lineWeek = lineWeekBefore + matchesString + lineWeekAfter;
+	return lineWeek;
    }
 })(jQuery);
