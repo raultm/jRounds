@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>jRounds Example</title>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.jrounds.js"></script>
+	<style type="text/css">
+	  body {
+	    color: purple;
+	    background-color: #d8da3d }
+	.match-fixtures{
+		margin-top:15px;
+ 	}
+	.match-fixtures span{
+		margin-left:15px;
+		float:left;
+		text-align:left;
+ 	}
+	.week-fixtures{
+		margin-top:15px;
+		margin-left:15px;
+		padding-bottom:15px;
+		text-align:center;
+		width:200px;
+		float:left;
+		background-color:#DDDDDD;
+	}
+	.week-fixtures .week-name{
+		background-color:#333333;
+		color:#CCFFCC;
+		display:block;
+		width:200px;
+	}
+	span.team-visitor{
+		display:block;
+	}
+	  </style>
+</head>
+<body>
+	<div id='qunit-target-test'></div>
+</body>
+</html>
+<script type='text/javascript'>
+	
+	console.log($.jRounds);
+	$.jRounds.overrideOptions({});
+	$.jRounds.scaffoldModule('#qunit-target-test');
+	menuId = '#menu-output';
+	$(menuId).click();
+	
+</script>
