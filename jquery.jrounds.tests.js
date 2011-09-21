@@ -12,7 +12,11 @@ var fixtures2 = {
 		, '2' : { 'matches' : { '0' : {  'local' : teams2[1], 'visitor' : teams2[0] } } } 
 	}
 }
-
+var teams3 = {
+    	  '0' : 'team1'
+ 	, '1' : 'team2'
+	, '2' : 'team3'
+}
 var teams4 = {
     	  '0' : 'team1'
  	, '1' : 'team2'
@@ -421,9 +425,16 @@ test("addRestTeam passing empty", function() {
 });
 
 test("addRestTeam passing teams2", function() {
-    var expectedJSON = teams2;
+    var expectedJSON = $.extend({},teams2);
     same($.jRounds.addRestTeam(teams2), expectedJSON, "addRestTeam teams 2, no changes");
 });
+
+test("addRestTeam passing teams3", function() {
+   var expectedJSON = $.jRounds.addRestTeam(teams3);console.log(expectedJSON);
+   var count = 0; for(index in expectedJSON){count++;}
+   same(count, 4, "addRestTeam teams3 -> 4 teams, Rest Added");
+});
+
 
 
 

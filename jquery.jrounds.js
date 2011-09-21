@@ -11,6 +11,7 @@
    };
 
    jRounds.options = null;
+   jRounds.restTeamName = "No team";
    jRounds.structure = {
 	  'settings' : 
 		{ "id" : 'settings-insertion' }
@@ -195,10 +196,11 @@
 
    jRounds.getFixtures = function(teams) {
 	if(!teams){ return null; }
-	teamsCount = 0;for(team in teams){teamsCount++;}
+	evenTeams = jRounds.addRestTeam(teams);
+	teamsCount = 0;for(team in evenTeams){teamsCount++;}
 	if(teamsCount == 0){ return null; }
 	fixtures = {'weeks' : {} };
-	rotatedTeams = $.extend(true, {}, teams);
+	rotatedTeams = $.extend(true, {}, evenTeams);
 	halfTeamsCount = teamsCount/2;
 	for(week=0; week<(teamsCount-1)*2; week++){
 		frontEndWeek = week + 1;
@@ -296,12 +298,13 @@
    }
 
    jRounds.addRestTeam = function(teams){
-	emptyJSON = {};
-	if(!teams){return emptyJSON };
+	var teamsEven = {};
+	if(!teams){return teamsEven };
 	count = 0;	
 	for(index in teams){count++;}
-	if(count%2 == 0){return $.extend({}, teams);}
-	else {count++;return $.extend({count: "Rest"}, teams);}
+	teamsEven = $.extend({}, teams);
+	if(count%2 == 0){return teamsEven;}
+	else { teamsEven[count++] = jRounds.restTeamName;return teamsEven;}
 
    }
 })(jQuery);
