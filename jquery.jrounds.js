@@ -31,6 +31,10 @@
 	      'before' : "<div class='week-fixtures'><span class='week-name'>Week {weekNumber}</span>"
 	    , 'after'  : "</div>"
 	}
+	, 'competition':{
+	      'before' : "<div class='competition-fixture'><span class='competition-name'>Competition</span>"
+	    , 'after'  : "</div>"
+	}
    }
 
    jRounds.classes = {
@@ -281,8 +285,8 @@
 
    jRounds.getLineCompetition = function(fixtures){
 	if(!fixtures){return '';}
-	var lineCompetitionBefore = "<div class='competition-fixture'><span class='competition-name'>Competition</span>"
-	var lineCompetitionAfter  = "</div>";	
+	var lineCompetitionBefore = jRounds.lines.competition.before;
+	var lineCompetitionAfter  = jRounds.lines.competition.after;	
 	var lineWeek = '';	
 	for(weekId in fixtures.weeks){
 	    lineWeek += jRounds.getLineWeek(weekId, fixtures.weeks[weekId]);
