@@ -25,6 +25,10 @@
 	}
    }
 
+   jRounds.lines = {
+	  'match' : "<div class='match-fixtures'><span class='team-local'>{localTeamName}</span><span class='team-visitor'>{visitorTeamName}</span></div>"
+   }
+
    jRounds.classes = {
 	  'menuItem' 	: "menu-element" 
 	, 'settingDiv'  : "setting-option-div"
@@ -252,7 +256,7 @@
 	if(!match){return '';}
 	var local = match.local;
 	var visitor = match.visitor;
-	var lineMatch = "<div class='match-fixtures'><span class='team-local'>{localTeamName}</span><span class='team-visitor'>{visitorTeamName}</span></div>";
+	var lineMatch = jRounds.lines.match;
 	lineMatch = lineMatch.replace('{localTeamName}', local);
 	lineMatch = lineMatch.replace('{visitorTeamName}', visitor);
 	return lineMatch;
