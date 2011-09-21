@@ -410,12 +410,12 @@ test("getLineCompetition passing null", function() {
     same($.jRounds.getLineCompetition(), expectedString, "Line Competition empty when no args ");
 });
 
-test("getLineCompetition passing null", function() {
+test("getLineCompetition fixtures2", function() {
     var expectedString = "<div class='competition-fixture'><span class='competition-name'>Competition</span><div class='week-fixtures'><span class='week-name'>Week 1</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div></div><div class='week-fixtures'><span class='week-name'>Week 2</span><div class='match-fixtures'><span class='team-local'>team2</span><span class='team-visitor'>team1</span></div></div></div>";
     same($.jRounds.getLineCompetition(fixtures2), expectedString, "Line Competition Ok");
 });
 
-test("addRestTeam passing null", function() {
+test("addRestTeam passing empty", function() {
     var expectedString = {};
     same($.jRounds.addRestTeam(), expectedString, "addRestTeam empty args emptyJSON");
 });

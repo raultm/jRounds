@@ -294,4 +294,8 @@
 	lineCompetition = lineCompetitionBefore + lineWeek + lineCompetitionAfter;
 	return lineCompetition;
    }
+
+   jRounds.addRestTeam = function(teams){
+	return {};
+   }
 })(jQuery);
