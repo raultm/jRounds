@@ -416,11 +416,14 @@ test("getLineCompetition fixtures2", function() {
 });
 
 test("addRestTeam passing empty", function() {
-    var expectedString = {};
-    same($.jRounds.addRestTeam(), expectedString, "addRestTeam empty args emptyJSON");
+    var expectedJSON = {};
+    same($.jRounds.addRestTeam(), expectedJSON, "addRestTeam empty args emptyJSON");
 });
 
-
+test("addRestTeam passing teams2", function() {
+    var expectedJSON = teams2;
+    same($.jRounds.addRestTeam(teams2), expectedJSON, "addRestTeam teams 2, no changes");
+});
 
 
 

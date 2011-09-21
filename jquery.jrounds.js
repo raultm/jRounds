@@ -296,6 +296,12 @@
    }
 
    jRounds.addRestTeam = function(teams){
-	return {};
+	emptyJSON = {};
+	if(!teams){return emptyJSON };
+	count = 0;	
+	for(index in teams){count++;}
+	if(count%2 == 0){return $.extend({}, teams);}
+	else {count++;return $.extend({count: "Rest"}, teams);}
+
    }
 })(jQuery);
