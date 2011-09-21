@@ -279,4 +279,8 @@
 	lineWeek = lineWeekBefore + matchesString + lineWeekAfter;
 	return lineWeek;
    }
+
+   jRounds.getLineCompetition = function(match){
+	return '';
+   }
 })(jQuery);
