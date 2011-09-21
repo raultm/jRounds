@@ -268,19 +268,26 @@
 
    jRounds.getLineWeek = function(weekId, week){
 	if(!week){return '';}
-	matchesString = "";	
+	var lineWeekBefore = jRounds.lines.week.before;
+	lineWeekBefore = lineWeekBefore.replace('{weekNumber}', weekId);
+	var lineWeekAfter  = jRounds.lines.week.after;	
+	var matchesString = "";
 	for(matchId in week.matches){
 	    matchesString += jRounds.getLineMatch(week.matches[matchId]); 
 	}
-	var lineWeekBefore = jRounds.lines.week.before;
-	lineWeekBefore = lineWeekBefore.replace('{weekNumber}', weekId);
-	var lineWeekAfter  = jRounds.lines.week.after;
-	
 	lineWeek = lineWeekBefore + matchesString + lineWeekAfter;
 	return lineWeek;
    }
 
-   jRounds.getLineCompetition = function(match){
-	return '';
+   jRounds.getLineCompetition = function(fixtures){
+	if(!fixtures){return '';}
+	var lineCompetitionBefore = "<div class='competition-fixture'><span class='competition-name'>Competition</span>"
+	var lineCompetitionAfter  = "</div>";	
+	var lineWeek = '';	
+	for(weekId in fixtures.weeks){
+	    lineWeek += jRounds.getLineWeek(weekId, fixtures.weeks[weekId]);
+	}
+	lineCompetition = lineCompetitionBefore + lineWeek + lineCompetitionAfter;
+	return lineCompetition;
    }
 })(jQuery);

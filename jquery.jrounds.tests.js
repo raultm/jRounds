@@ -395,19 +395,24 @@ test("getLineWeek using replace", function() {
     var expectedString = "<div class='week-fixtures'><span class='week-name'>Week 1</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div></div>";
     var weekId = 1;
     var week = fixtures2.weeks[weekId];
-    same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Match Ok");
+    same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Week Ok");
 });
 
 test("getLineWeek using replace", function() {
     var expectedString = "<div class='week-fixtures'><span class='week-name'>Week 2</span><div class='match-fixtures'><span class='team-local'>team2</span><span class='team-visitor'>team1</span></div></div>";
     var weekId = 2;
     var week = fixtures2.weeks[weekId];
-    same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Match Ok");
+    same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Week Ok");
 });
 
 test("getLineCompetition passing null", function() {
     var expectedString = '';
-    same($.jRounds.getLineCompetition(), expectedString, "Line Week empty when no args ");
+    same($.jRounds.getLineCompetition(), expectedString, "Line Competition empty when no args ");
+});
+
+test("getLineCompetition passing null", function() {
+    var expectedString = "<div class='competition-fixture'><span class='competition-name'>Competition</span><div class='week-fixtures'><span class='week-name'>Week 1</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div></div><div class='week-fixtures'><span class='week-name'>Week 2</span><div class='match-fixtures'><span class='team-local'>team2</span><span class='team-visitor'>team1</span></div></div></div>";
+    same($.jRounds.getLineCompetition(fixtures2), expectedString, "Line Competition Ok");
 });
 
 
