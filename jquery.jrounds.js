@@ -247,4 +247,14 @@
         ;
 	return fixtureOutput;
    }
+
+   jRounds.getLineMatch = function(match){
+	if(!match){return '';}
+	var local = match.local;
+	var visitor = match.visitor;
+	var lineMatch = "<div class='match-fixtures'><span class='team-local'>{localTeamName}</span><span class='team-visitor'>{visitorTeamName}</span></div>";
+	lineMatch = lineMatch.replace('{localTeamName}', local);
+	lineMatch = lineMatch.replace('{visitorTeamName}', visitor);
+	return lineMatch;
+   }
 })(jQuery);
