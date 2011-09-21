@@ -368,3 +368,27 @@ test("parseFixtureJson2FixtureOutput (Teams Size 4)", function() {
 
    same($.jRounds.parseFixtureJson2FixtureOutput(fixtures4), expectedString, "Json converted to String Ok!");
 });
+
+test("getLineMatch passing null", function() {
+    var expectedString = '';
+    same($.jRounds.getLineMatch(), expectedString, "Line Match empty when no args ");
+});
+
+test("getLineMatch using replace", function() {
+    var expectedString = "<div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div>"
+    var match = fixtures2.weeks[1].matches[0];
+    same($.jRounds.getLineMatch(match), expectedString, "Line Match Ok");
+});
+
+test("getLineMatch using replace", function() {
+    var expectedString = "<div class='match-fixtures'><span class='team-local'>team2</span><span class='team-visitor'>team1</span></div>"
+    var match = fixtures2.weeks[2].matches[0];
+    same($.jRounds.getLineMatch(match), expectedString, "Line Match Ok");
+});
+
+
+
+
+
+
+
