@@ -435,6 +435,13 @@ test("addRestTeam passing teams3", function() {
    same(count, 4, "addRestTeam teams3 -> 4 teams, Rest Added");
 });
 
+module("Default Options", {
+    setup: function() {    
+ 	$.jRounds.overrideOptions();
+    },
+    teardown: function() {}
+});
+
 test("isValidTeamNumber Value 50 true ", function(){
     same($.jRounds.isValidTeamNumber(50),true, "50 is greater than Min Team Number or less than Max Team Number");
 });
@@ -444,11 +451,15 @@ test("isValidTeamNumber Value 51 false", function(){
 });
 
 test("isValidTeamNumber Value 2 true", function(){
-    same($.jRounds.isValidTeamNumber(2),false, "2 is greater than Min Team Number or less than Max Team Number");
+    same($.jRounds.isValidTeamNumber(2),true, "2 is greater than Min Team Number or less than Max Team Number");
 });
 
 test("isValidTeamNumber Value 1 false", function(){
     same($.jRounds.isValidTeamNumber(1),false, "1 is less than Min Team Number or greater than Max Team Number");
+});
+
+test("isValidTeamNumber Value 'a' false", function(){
+    same($.jRounds.isValidTeamNumber('a'),false, "a is not a number");
 });
 
 

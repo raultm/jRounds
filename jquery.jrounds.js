@@ -3,6 +3,8 @@
    
    jRounds.defaultOptions = {
       	  teamsLength : 20
+	, maxNumberOfTeams : 50
+	, minNumberOfTeams : 2
    };
                     
    $.fn.jRounds = function(options){
@@ -295,7 +297,7 @@
    }
 
    jRounds.isValidTeamNumber = function(numberOfTeams){
-	if(numberOfTeams > 50)
+	if(numberOfTeams > jRounds.options.maxNumberOfTeams || numberOfTeams < jRounds.options.minNumberOfTeams || (numberOfTeams - 0) != numberOfTeams)
 	    return false
 	else
 	    return true;
