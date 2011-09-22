@@ -276,7 +276,7 @@ test("getFixtures Function receive teams param(Size 4)", function() {
    same($.jRounds.getFixtures(teams4), fixtures4, "Fixtures Ok with 4 teams and 2 legs");
 });
 
-test("parseFixtureJson2FixtureOutput (Teams Size 2)", function() {
+test("getLineCompetition (Teams Size 2)", function() {
     expectedString = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
 	    + "<div class='week-fixtures'>"
@@ -295,10 +295,10 @@ test("parseFixtureJson2FixtureOutput (Teams Size 2)", function() {
 	    + "</div>"
 	+ "</div>"
     ;
-    same($.jRounds.parseFixtureJson2FixtureOutput(fixtures2), expectedString, "Json converted to String Ok!");
+    same($.jRounds.getLineCompetition(fixtures2), expectedString, "Json converted to String Ok!");
 });
 
-test("parseFixtureJson2FixtureOutput (Teams Size 4)", function() {
+test("getLineCompetition (Teams Size 4)", function() {
     var expectedString = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
 	    + "<div class='week-fixtures'>"
@@ -370,7 +370,7 @@ test("parseFixtureJson2FixtureOutput (Teams Size 4)", function() {
 	+ "</div>"
     ;
 
-   same($.jRounds.parseFixtureJson2FixtureOutput(fixtures4), expectedString, "Json converted to String Ok!");
+   same($.jRounds.getLineCompetition(fixtures4), expectedString, "Json converted to String Ok!");
 });
 
 test("getLineMatch passing null", function() {

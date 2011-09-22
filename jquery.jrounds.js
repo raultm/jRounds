@@ -6,8 +6,9 @@
    };
                     
    $.fn.jRounds = function(options){
-   	jRounds.overrideOptions(options);                    
- 	return this;
+	jRounds.overrideOptions(options);                    
+	jRounds.scaffoldModule($(this));
+	return this;
    };
 
    jRounds.options = null;
@@ -85,13 +86,26 @@
    }
 
    jRounds.addChangeTeamNumberFunctionality = function(){
-   	$('input[name="teamsLength"]').change(function(){
-   		var value = $(this).val();
+	
+	$('input[name="teamsLength"]').unbind('change');
+	$('input[name="teamsLength"]').unbind('keyup');
+	
+	$('input[name="teamsLength"]').change(function(){
+   	    var value = $(this).val();
   	    var options = { teamsLength : value }
-  	    jRounds.overrideOptions(options)
-  	    console.log(options);
-  	    $('#qunit-target-test').html('');
-  	    jRounds.scaffoldModule( $('#qunit-target-test'));
+  	    jRounds.overrideOptions(options);
+	    var plainTextId = '#' + jRounds.structure.output.options.plain.id;
+	    $('#' + jRounds.structure.names.id).remove();
+	    jRounds.scaffoldTeamNamesInsertion($(this));
+	    $(plainTextId).html('');
+	    
+	    jRounds.showFixtures(jRounds.getTeamNames(), $(plainTextId));
+	console.log({});
+  	    
+	});
+
+	$('input[name="teamsLength"]').keyup(function(){
+	    $(this).trigger('change');
 	});
    }
 
@@ -190,7 +204,7 @@
 
    jRounds.showFixtures = function( teams, element ){
 	var fixtures = jRounds.getFixtures(teams);
-	fixturesHtml = jRounds.parseFixtureJson2FixtureOutput(fixtures);
+	fixturesHtml = jRounds.getLineCompetition(fixtures);
 	$(element).html(fixturesHtml);	
     }
 
@@ -234,34 +248,6 @@
 	return teamsRotates;
    }
    
-   jRounds.parseFixtureJson2FixtureOutput = function(fixtureJson){
-	
-	fixtureOutput	= "";
-	weeksOutput 	= "";
-	matchesOutput 	= "";
-	$.each(fixtureJson.weeks,function( weekIndex, week ) { 
-	    matchesOutput = "";
-	    $.each(week.matches,function( matchIndex, match ) { 
-		matchesOutput+= 
-		  "<div class='match-fixtures'>"
-	            + "<span class='" + jRounds.classes.teamLocal + "'>" + match.local + "</span>"
-		    + "<span class='" + jRounds.classes.teamVisitor + "'>" + match.visitor + "</span>"
-		+ "</div>"		    
-	    });
-	    weeksOutput += 
-	      "<div class='" + jRounds.classes.weekFixtures + "'>"
-		+ "<span class='" + jRounds.classes.weekName + "'>Week " + weekIndex + "</span>"
-		+ matchesOutput
-	    + "</div>"
-	});
-	fixtureOutput = "<div class='" + jRounds.classes.competitionFixture + "'>"
-	    + "<span class='" + jRounds.classes.competitionName + "'>Competition</span>"
-	    + weeksOutput
-	+ "</div>"
-        ;
-	return fixtureOutput;
-   }
-
    jRounds.getLineMatch = function(match){
 	if(!match){return '';}
 	var local = match.local;
