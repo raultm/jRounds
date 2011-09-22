@@ -1,10 +1,23 @@
 (function($) {
    var jRounds = $.jRounds = {};
    
+   jRounds.lines = {
+	  'match' : "<div class='match-fixtures'><span class='team-local'>{localTeamName}</span><span class='team-visitor'>{visitorTeamName}</span></div>"
+	, 'week':{
+	      'before' : "<div class='week-fixtures'><span class='week-name'>Week {weekNumber}</span>"
+	    , 'after'  : "</div>"
+	}
+	, 'competition':{
+	      'before' : "<div class='competition-fixture'><span class='competition-name'>Competition</span>"
+	    , 'after'  : "</div>"
+	}
+   }
+
    jRounds.defaultOptions = {
       	  teamsLength : 20
 	, maxNumberOfTeams : 50
 	, minNumberOfTeams : 2
+ 	, lines : jRounds.lines
    };
                     
    $.fn.jRounds = function(options){
@@ -29,18 +42,7 @@
 	}
    }
 
-   jRounds.lines = {
-	  'match' : "<div class='match-fixtures'><span class='team-local'>{localTeamName}</span><span class='team-visitor'>{visitorTeamName}</span></div>"
-	, 'week':{
-	      'before' : "<div class='week-fixtures'><span class='week-name'>Week {weekNumber}</span>"
-	    , 'after'  : "</div>"
-	}
-	, 'competition':{
-	      'before' : "<div class='competition-fixture'><span class='competition-name'>Competition</span>"
-	    , 'after'  : "</div>"
-	}
-   }
-
+   
    jRounds.classes = {
 	  'menuItem' 	: "menu-element" 
 	, 'settingDiv'  : "setting-option-div"
@@ -254,7 +256,7 @@
 	if(!match){return '';}
 	var local = match.local;
 	var visitor = match.visitor;
-	var lineMatch = jRounds.lines.match;
+	var lineMatch = jRounds.options.lines.match;
 	lineMatch = lineMatch.replace('{localTeamName}', local);
 	lineMatch = lineMatch.replace('{visitorTeamName}', visitor);
 	return lineMatch;
@@ -262,9 +264,9 @@
 
    jRounds.getLineWeek = function(weekId, week){
 	if(!week){return '';}
-	var lineWeekBefore = jRounds.lines.week.before;
+	var lineWeekBefore = jRounds.options.lines.week.before;
 	lineWeekBefore = lineWeekBefore.replace('{weekNumber}', weekId);
-	var lineWeekAfter  = jRounds.lines.week.after;	
+	var lineWeekAfter  = jRounds.options.lines.week.after;	
 	var matchesString = "";
 	for(matchId in week.matches){
 	    matchesString += jRounds.getLineMatch(week.matches[matchId]); 
@@ -275,8 +277,8 @@
 
    jRounds.getLineCompetition = function(fixtures){
 	if(!fixtures){return '';}
-	var lineCompetitionBefore = jRounds.lines.competition.before;
-	var lineCompetitionAfter  = jRounds.lines.competition.after;	
+	var lineCompetitionBefore = jRounds.options.lines.competition.before;
+	var lineCompetitionAfter  = jRounds.options.lines.competition.after;	
 	var lineWeek = '';	
 	for(weekId in fixtures.weeks){
 	    lineWeek += jRounds.getLineWeek(weekId, fixtures.weeks[weekId]);
