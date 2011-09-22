@@ -2,9 +2,13 @@ module("Beginning");
 
 var targetId = "#qunit-target";
 var testTargetId = "#qunit-target-test";
+var teamsNames2 = {
+    	  '0' : 'team0'
+ 	, '1' : 'team1'
+}
 var teams2 = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
+    	  '0' : '0'
+ 	, '1' : '1'
 }
 var fixtures2 = {
 	  'weeks' : { 
@@ -17,11 +21,17 @@ var teams3 = {
  	, '1' : 'team2'
 	, '2' : 'team3'
 }
+var teamsNames4 = {
+    	  '0' : 'team0'
+ 	, '1' : 'team1'
+	, '2' : 'team2'
+	, '3' : 'team3'
+}
 var teams4 = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
-	, '2' : 'team3'
-	, '3' : 'team4'
+    	  '0' : '0'
+ 	, '1' : '1'
+	, '2' : '2'
+	, '3' : '3'
 }
 var fixtures4 = {
 	"weeks": {
@@ -53,14 +63,14 @@ test("Default Options", function() {
 
 test("Override Default Options", function() {
     $.jRounds.overrideOptions({teamsLength : 10});
-    +same($.jRounds.options.teamsLength, 10);   
+    same($.jRounds.options.teamsLength, 10);   
 });
 
 test("Calling Plugin Override Options", function() {
    $(targetId).jRounds({
       testOption : "Almendralejo"
    });
-    
+    console.log($.jRounds.options);
    same($.jRounds.options.teamsLength, 20); 
    same($.jRounds.options.testOption, "Almendralejo");    
 });
@@ -245,17 +255,17 @@ test("rotateTeamsJSON Function receive teams param empty", function() {
 
 test("rotateTeamsJSON Function receive teams param(size 2)", function() {
     expectedTeams = {
-    	  '0' : 'team1'
- 	, '1' : 'team2'
+    	  '0' : '0'
+ 	, '1' : '1'
     };
     same($.jRounds.rotateTeamsJSON(teams2), expectedTeams, "With Elements we must have the same JSON");
 });
 test("rotateTeamsJSON Function receive teams param(size 4)", function() {
     expectedTeams = {
-    	  '0' : 'team3'
- 	, '1' : 'team1'
-	, '2' : 'team2'
-	, '3' : 'team4'
+    	  '0' : '2'
+ 	, '1' : '0'
+	, '2' : '1'
+	, '3' : '3'
     };
     same($.jRounds.rotateTeamsJSON(teams4), expectedTeams, "With Four elements we must see hot the first three elements have changed");
 });
@@ -274,20 +284,21 @@ test("getFixtures Function receive teams param(Size 4)", function() {
 });
 
 test("getLineCompetition (Teams Size 2)", function() {
+    $.jRounds.overrideOptions({names : teamsNames2});
     expectedString = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 1</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams2[0] + "</span>"
-		    + "<span class='team-visitor'>" + teams2[1] + "</span>"
+	            + "<span class='team-local'>" + teamsNames2[0] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames2[1] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 2</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams2[1] + "</span>"
-		    + "<span class='team-visitor'>" + teams2[0] + "</span>"
+	            + "<span class='team-local'>" + teamsNames2[1] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames2[0] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	+ "</div>"
@@ -296,72 +307,73 @@ test("getLineCompetition (Teams Size 2)", function() {
 });
 
 test("getLineCompetition (Teams Size 4)", function() {
+    $.jRounds.overrideOptions({names : teamsNames4});
     var expectedString = "<div class='competition-fixture'>"
 	    + "<span class='competition-name'>Competition</span>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 1</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[2] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[3] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[2] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[3] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[1] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[0] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[1] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[0] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 2</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[3] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[1] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[3] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[1] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[0] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[2] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[0] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[2] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 3</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[0] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[3] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[0] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[3] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[2] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[1] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[2] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[1] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 4</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[3] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[2] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[3] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[2] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[1] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[0] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[1] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[0] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 5</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[1] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[3] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[1] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[3] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[0] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[2] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[0] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[2] + "</span>"
 		+ "</div>"
 	    + "</div>"
 	    + "<div class='week-fixtures'>"
 		+ "<span class='week-name'>Week 6</span>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[3] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[0] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[3] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[0] + "</span>"
 		+ "</div>"
 		+ "<div class='match-fixtures'>"
-	            + "<span class='team-local'>" + teams4[2] + "</span>"
-		    + "<span class='team-visitor'>" + teams4[1] + "</span>"
+	            + "<span class='team-local'>" + teamsNames4[2] + "</span>"
+		    + "<span class='team-visitor'>" + teamsNames4[1] + "</span>"
 		+ "</div>"
 	    + "</div>"	    
 	+ "</div>"
@@ -376,13 +388,13 @@ test("getLineMatch passing null", function() {
 });
 
 test("getLineMatch using replace", function() {
-    var expectedString = "<div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div>"
+    var expectedString = "<div class='match-fixtures'><span class='team-local'>team0</span><span class='team-visitor'>team1</span></div>"
     var match = fixtures2.weeks[1].matches[0];
     same($.jRounds.getLineMatch(match), expectedString, "Line Match Ok");
 });
 
 test("getLineMatch using replace", function() {
-    var expectedString = "<div class='match-fixtures'><span class='team-local'>team2</span><span class='team-visitor'>team1</span></div>"
+    var expectedString = "<div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team0</span></div>"
     var match = fixtures2.weeks[2].matches[0];
     same($.jRounds.getLineMatch(match), expectedString, "Line Match Ok");
 });
@@ -393,14 +405,14 @@ test("getLineWeek passing null", function() {
 });
 
 test("getLineWeek using replace", function() {
-    var expectedString = "<div class='week-fixtures'><span class='week-name'>Week 1</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div></div>";
+    var expectedString = "<div class='week-fixtures'><span class='week-name'>Week 1</span><div class='match-fixtures'><span class='team-local'>team0</span><span class='team-visitor'>team1</span></div></div>";
     var weekId = 1;
     var week = fixtures2.weeks[weekId];
     same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Week Ok");
 });
 
 test("getLineWeek using replace", function() {
-    var expectedString = "<div class='week-fixtures'><span class='week-name'>Week 2</span><div class='match-fixtures'><span class='team-local'>team2</span><span class='team-visitor'>team1</span></div></div>";
+    var expectedString = "<div class='week-fixtures'><span class='week-name'>Week 2</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team0</span></div></div>";
     var weekId = 2;
     var week = fixtures2.weeks[weekId];
     same($.jRounds.getLineWeek(weekId, week), expectedString, "Line Week Ok");
@@ -412,7 +424,7 @@ test("getLineCompetition passing null", function() {
 });
 
 test("getLineCompetition fixtures2", function() {
-    var expectedString = "<div class='competition-fixture'><span class='competition-name'>Competition</span><div class='week-fixtures'><span class='week-name'>Week 1</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team2</span></div></div><div class='week-fixtures'><span class='week-name'>Week 2</span><div class='match-fixtures'><span class='team-local'>team2</span><span class='team-visitor'>team1</span></div></div></div>";
+    var expectedString = "<div class='competition-fixture'><span class='competition-name'>Competition</span><div class='week-fixtures'><span class='week-name'>Week 1</span><div class='match-fixtures'><span class='team-local'>team0</span><span class='team-visitor'>team1</span></div></div><div class='week-fixtures'><span class='week-name'>Week 2</span><div class='match-fixtures'><span class='team-local'>team1</span><span class='team-visitor'>team0</span></div></div></div>";
     same($.jRounds.getLineCompetition(fixtures2), expectedString, "Line Competition Ok");
 });
 

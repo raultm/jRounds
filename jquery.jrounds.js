@@ -21,7 +21,7 @@
    };
                     
    $.fn.jRounds = function(options){
-	jRounds.overrideOptions(options);                    
+	jRounds.overrideOptions(options);       console.log(jRounds.options);             
 	jRounds.scaffoldModule($(this));
 	return this;
    };
@@ -80,8 +80,7 @@
 	    var divId = id.replace('menu-', '');
 	    var structure = jRounds.structure;
 	    $.each(structure,function( contentIndex, contentIdentifier ) {
-		console.log(contentIdentifier.id + " == " + structure[divId].id);
-	    	if(contentIdentifier.id == structure[divId].id)
+		if(contentIdentifier.id == structure[divId].id)
 		    $('#' + contentIdentifier.id).show();
 	    	else
 		    $('#' + contentIdentifier.id).hide();
@@ -104,8 +103,6 @@
 	    $(plainTextId).html('');
 	    
 	    jRounds.showFixtures(jRounds.getTeamNames(), $(plainTextId));
-	console.log({});
-  	    
 	});
 
 	$('input[name="teamsLength"]').keyup(function(){
@@ -262,8 +259,8 @@
 	var local = match.local;
 	var visitor = match.visitor;
 	var lineMatch = jRounds.options.lines.match;
-	lineMatch = lineMatch.replace('{localTeamName}', local);
-	lineMatch = lineMatch.replace('{visitorTeamName}', visitor);
+	lineMatch = lineMatch.replace('{localTeamName}', jRounds.getTeamName(local));
+	lineMatch = lineMatch.replace('{visitorTeamName}', jRounds.getTeamName(visitor));
 	return lineMatch;
    }
 
