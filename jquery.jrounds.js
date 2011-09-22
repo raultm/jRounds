@@ -306,7 +306,13 @@
    }
 
    jRounds.getTeamName = function(position){
-	return null;
+	if(position)
+	   if(jRounds.options.names && jRounds.options.names[position])
+	       return jRounds.options.names[position];
+	   else
+	       return "Team " + position;
+	else
+	   return null;
    }
 
 })(jQuery);
