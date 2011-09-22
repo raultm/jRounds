@@ -189,7 +189,7 @@
 		nameInputs += 
 			"<div class='" + jRounds.classes.teamNameDiv +"'>"
 			    + "<label for='team-name-input-" + position + "'>Team Name " + frontendPosition + " : <label>"			
-			    + "<input type='text' name='team-name-input-" + position + "' class='team-name-input' value='Team " + frontendPosition + "'/>"
+			    + "<input type='text' name='team-name-input-" + position + "' class='team-name-input' value='" + jRounds.getTeamName(frontendPosition) + "'/>"
 			+ "</div>";
 	}
 	var html = 
@@ -201,9 +201,14 @@
    };
 
    jRounds.getTeamNames = function(){
-	teamNamesInputs = $('.team-name-input');
-	teamNames = $.map(teamNamesInputs, function(input, index){ return $(input).val(); });
-        return teamNames;
+	var teamNamesInputs = $('.team-name-input');
+	var teamNames = $.map(teamNamesInputs, function(input, index){ return $(input).val(); });
+        var teams = new Array();
+	jRounds.overrideOptions({names : teamNames});
+	for(position = 0; position < $('.team-name-input').size(); position++){
+	    teams[position] = position;
+	}
+        return teams;
    }
 
    jRounds.showFixtures = function( teams, element ){

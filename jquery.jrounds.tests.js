@@ -52,11 +52,8 @@ test("Default Options", function() {
 });
 
 test("Override Default Options", function() {
-    $.jRounds.overrideOptions({
-        teamsLength : 10
-    });
-    
-    same($.jRounds.options.teamsLength, 10);   
+    $.jRounds.overrideOptions({teamsLength : 10});
+    +same($.jRounds.options.teamsLength, 10);   
 });
 
 test("Calling Plugin Override Options", function() {
@@ -123,7 +120,7 @@ test("After Scaffold Team Names' Insertion get Teams Name in JSONObject", functi
 	
    teamNames = $.jRounds.getTeamNames();
    
-   expectedTeamNames = ["Team 1", "Team 2", "Team 3", "Team 4"];
+   expectedTeamNames = [0, 1, 2, 3];
 
    same(teamNames, expectedTeamNames, "We've received 4 Team Names");
 
