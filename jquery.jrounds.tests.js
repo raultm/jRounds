@@ -462,8 +462,12 @@ test("isValidTeamNumber Value 'a' false", function(){
     same($.jRounds.isValidTeamNumber('a'),false, "a is not a number");
 });
 
-test("getTeamName 1", function(){
-    same($.jRounds.getTeamName(),null, "Empty params return null");
+test("getTeamName empty params", function(){
+    same($.jRounds.getTeamName(), null, "Empty params return null");
+});
+
+test("getTeamName position 1 with empty jRounds.names", function(){
+    same($.jRounds.getTeamName(1), 'Team 1', "Ddefault TeamName 1");
 });
 
 
