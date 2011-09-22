@@ -435,6 +435,11 @@ test("addRestTeam passing teams3", function() {
    same(count, 4, "addRestTeam teams3 -> 4 teams, Rest Added");
 });
 
+test("greaterThanMaxTeamNumber", function(){
+    same($.jRounds.greaterThanMaxTeamNumber(50),false, "50 is less than Max Team Number");
+});
+
+
 
 
 
