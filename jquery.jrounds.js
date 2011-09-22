@@ -108,7 +108,7 @@
 	    $(this).trigger('change');
 	});
    }
-
+   
    jRounds.scaffoldModule = function(element){
 	var html = "<div id='competition-calendar'></div>"; 
 	var competitionId = '#competition-calendar';
@@ -292,5 +292,9 @@
 	if(count%2 == 0){return teamsEven;}
 	else { teamsEven[count++] = jRounds.restTeamName;return teamsEven;}
 
+   }
+
+   jRounds.greaterThanMaxTeamNumber = function(numberOfTeams){
+   	return false;
    }
 })(jQuery);
