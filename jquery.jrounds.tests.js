@@ -467,7 +467,13 @@ test("getTeamName empty params", function(){
 });
 
 test("getTeamName position 1 with empty jRounds.names", function(){
-    same($.jRounds.getTeamName(1), 'Team 1', "Ddefault TeamName 1");
+    same($.jRounds.getTeamName(1), 'Team 1', "Default TeamName 1");
+});
+
+test("getTeamName position 1 with override jRounds.names", function(){
+    var names = {"names": {"0":"Messi", "1":"Prosinecki"} }
+    $.jRounds.overrideOptions(names);
+    same($.jRounds.getTeamName(1), 'Prosinecki', "Default TeamName 1");
 });
 
 
