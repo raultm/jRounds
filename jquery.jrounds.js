@@ -295,6 +295,9 @@
    }
 
    jRounds.isValidTeamNumber = function(numberOfTeams){
-   	return false;
+	if(numberOfTeams > 50)
+	    return false
+	else
+	    return true;
    }
 })(jQuery);
