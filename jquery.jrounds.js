@@ -304,4 +304,9 @@
 	else
 	    return true;
    }
+
+   jRounds.getTeamName = function(position){
+	return null;
+   }
+
 })(jQuery);
