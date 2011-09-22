@@ -294,7 +294,7 @@
 
    }
 
-   jRounds.greaterThanMaxTeamNumber = function(numberOfTeams){
+   jRounds.isValidTeamNumber = function(numberOfTeams){
    	return false;
    }
 })(jQuery);
