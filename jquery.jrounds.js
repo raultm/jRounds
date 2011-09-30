@@ -317,9 +317,18 @@
 	   return null;
    }
 
-   jRounds.shuffleJSON = function(json){
-	if(!json){ return {} }
-	else
-	    return json;	
+   jRounds.shuffleJSON = function(json) {
+        var teams = $.extend({}, json);
+        var count = 0;	
+        for(index in teams){count++;}
+        if ( count == 0 ) return {};
+        while ( --count ) {
+           var randomIndex = Math.floor( Math.random() * ( count + 1 ) );
+	   var temp1 = teams[count];
+	   var temp2 = teams[randomIndex];
+	   teams[count] = temp2;
+	   teams[randomIndex] = temp1;
+        }
+	return teams;
    }
 })(jQuery);
