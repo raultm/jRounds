@@ -110,7 +110,8 @@ test("After Scaffold Settings' Form get Settings in JSONObject", function() {
    settings = $.jRounds.getSettings();
    
    expectedSettings = {
-	"teamsLength" : "4"
+	  "teamsLength" : "4"
+	, "random" : "1"
    };
 
    same(settings, expectedSettings, "Checked Setting Options");
@@ -165,7 +166,7 @@ test("Scaffold Complete Module", function() {
    ok($(targetId).find('#competition-calendar').length, 'Main Div Created');
    ok($(targetId).find('#competition-menu').length, 'Menu Div Created');
    ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
-   same($('.setting-option-div').size(), 1, "We have 1 '.setting-option-div'");
+   same($('.setting-option-div').size(), 2, "We have 1 '.setting-option-div'");
    ok($(targetId).find('.setting-option-div [name$="teamsLength"]').length, 'Exists Teams Length Setting');
    same($('.team-name-input-div').size(), 4, "We have 4 '.team-name-input-div'");
    same($('.week-fixtures').size(), 6, "We have 6 '.week-fixtures'");

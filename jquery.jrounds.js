@@ -153,10 +153,21 @@
    jRounds.scaffoldSettingsInsertion = function(element) {
         var settingOption = '';var teamsLength = jRounds.options.teamsLength;
 	settingOption += 
-			"<div class='" + jRounds.classes.settingDiv + "'>"
+			  "<div class='" + jRounds.classes.settingDiv + "'>"
 			    + "<label for='setting-option-teams-length'>Number of Teams : <label>"			
 			    + "<input type='text' name='teamsLength' class='setting-option' value='" + teamsLength + "'/>"
-			+ "</div>";
+ 			+ "</div>"
+			+ "<div class='" + jRounds.classes.settingDiv + "'>"
+			    + "<label for='setting-option-random'>Random : <label>"
+			    + "<select type='checkbox' name='random' class='setting-option'>"
+				+ "<option value='1'>Yes</option>"
+				+ "<option value='0'>No</option>"
+			    + "</select>"
+			+ "</div>"
+			+ "<div>"
+			    + "<a id='regenerate'>Generate</a>"	
+			+ "</div>"
+	;
 	var html = 
 		  "<div id='" + jRounds.structure.settings.id + "'>"
 			+ settingOption
