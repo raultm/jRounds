@@ -67,9 +67,7 @@ test("Override Default Options", function() {
 });
 
 test("Calling Plugin Override Options", function() {
-   $(targetId).jRounds({
-      testOption : "Almendralejo"
-   });
+   $.jRounds.overrideOptions({ testOption : "Almendralejo" });
     console.log($.jRounds.options);
    same($.jRounds.options.teamsLength, 20); 
    same($.jRounds.options.testOption, "Almendralejo");    
@@ -442,6 +440,10 @@ test("addRestTeam passing teams3", function() {
    var expectedJSON = $.jRounds.addRestTeam(teams3);console.log(expectedJSON);
    var count = 0; for(index in expectedJSON){count++;}
    same(count, 4, "addRestTeam teams3 -> 4 teams, Rest Added");
+});
+
+test("Shuffle JSON Object - return emptyJSON if no params", function(){
+   same($.jRounds.shuffleJSON(), {}, "Empty JSON without params");
 });
 
 module("Default Options", {
