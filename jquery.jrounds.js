@@ -306,9 +306,9 @@
 	count = 0;	
 	for(index in teams){count++;}
 	teamsEven = $.extend({}, teams);
-	if(count%2 == 0){return teamsEven;}
-	else { teamsEven[count++] = jRounds.restTeamName;return teamsEven;}
-
+	if(count%2 != 0){teamsEven[count++] = jRounds.restTeamName;}
+	teamsEven = jRounds.shuffleJSON(teamsEven);        
+	return teamsEven;
    }
 
    jRounds.isValidTeamNumber = function(numberOfTeams){
