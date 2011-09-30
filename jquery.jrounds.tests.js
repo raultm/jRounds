@@ -95,10 +95,12 @@ test("Scaffold Output View", function() {
 });
 
 test("Scaffold Settings' Form", function() {
-   $.jRounds.scaffoldSettingsInsertion($(targetId));
-   ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
-   same($('.setting-option-div').size(), 1, "We have 1 '.setting-option-div'");
-   ok($(targetId).find('.setting-option-div [name$="teamsLength"]').length, 'Exists Teams Length Setting');
+    $.jRounds.scaffoldSettingsInsertion($(targetId));
+    ok($(targetId).find('#settings-insertion').length, 'Prepare to introduce Settings');
+    same($('.setting-option-div').size(), 2, "We have 1 '.setting-option-div'");
+    ok($(targetId).find('.setting-option-div [name$="teamsLength"]').length, 'Exists Teams Length Setting');
+    ok($(targetId).find('.setting-option-div [name$="random"]').length, 'Exists Random Selector');
+    ok($(targetId).find('#regenerate').length, 'Exists Regenerate Button');
 });
 
 test("After Scaffold Settings' Form get Settings in JSONObject", function() {
