@@ -446,6 +446,10 @@ test("Shuffle JSON Object - return emptyJSON if no params", function(){
    same($.jRounds.shuffleJSON(), {}, "Empty JSON without params");
 });
 
+test("Shuffle JSON Object - return the same if param length is 1", function(){
+   same($.jRounds.shuffleJSON({"0" : "Team 1"}), {"0" : "Team 1"}, "Return the same JSON");
+});
+
 module("Default Options", {
     setup: function() {    
  	$.jRounds.overrideOptions();
