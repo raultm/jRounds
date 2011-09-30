@@ -318,6 +318,8 @@
    }
 
    jRounds.shuffleJSON = function(json){
-	return {};
+	if(!json){ return {} }
+	else
+	    return json;	
    }
 })(jQuery);
