@@ -317,4 +317,7 @@
 	   return null;
    }
 
+   jRounds.shuffleJSON = function(json){
+	return {};
+   }
 })(jQuery);
